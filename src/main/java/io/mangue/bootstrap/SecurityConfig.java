@@ -3,9 +3,6 @@ package io.mangue.bootstrap;
 import io.mangue.services.MangueAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
 
-//ackage org.ingini.spring.boot.mongodb.config;
-
-//import org.ingini.spring.boot.mongodb.security.MongoDBAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.core.annotation.Order;
@@ -35,20 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().and().authorizeRequests()
                 .antMatchers("/", "/home", "/login", "/data", "/access", "/logout", "util").permitAll()
                 .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN")
-//                .anyRequest().permitAll()
                 .antMatchers("/admin/api/**").hasAuthority("ADMIN")
-//                .anyRequest().permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable();
-
-//        http.formLogin().defaultSuccessUrl("/resource")
-//                .and().logout().and().authorizeRequests()
-//                .and().authorizeRequests()
-//                .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/admin/api/**").hasRole("ADMIN")
-//                .antMatchers("/", "/home", "/login", "/data", "/access", "/logout", "util").permitAll().anyRequest()
-//                .authenticated()
-//                .and().csrf().disable();
     }
 
     @Autowired
