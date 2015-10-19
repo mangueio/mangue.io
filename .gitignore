@@ -1,6 +1,13 @@
 data/*
+
+.metadata/*
+.settings/*
+.classpath
+.project
+
 *.iml
 .idea/*
 /target/
+
 *.dmp
 deploy.sh
