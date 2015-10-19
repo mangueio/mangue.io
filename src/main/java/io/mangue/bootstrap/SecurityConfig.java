@@ -1,0 +1,58 @@
+package io.mangue.bootstrap;
+
+import io.mangue.services.MangueAuthenticationProvider;
+import org.springframework.context.annotation.Configuration;
+
+//ackage org.ingini.spring.boot.mongodb.config;
+
+//import org.ingini.spring.boot.mongodb.security.MongoDBAuthenticationProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+
+@Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true)
+@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private MangueAuthenticationProvider authenticationProvider;
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**", "/css/**");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin().defaultSuccessUrl("/resource")
+                .and().logout().and().authorizeRequests()
+                .antMatchers("/", "/home", "/login", "/data", "/access", "/logout", "util").permitAll()
+                .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN")
+//                .anyRequest().permitAll()
+                .antMatchers("/admin/api/**").hasAuthority("ADMIN")
+//                .anyRequest().permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable();
+
+//        http.formLogin().defaultSuccessUrl("/resource")
+//                .and().logout().and().authorizeRequests()
+//                .and().authorizeRequests()
+//                .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/admin/api/**").hasRole("ADMIN")
+//                .antMatchers("/", "/home", "/login", "/data", "/access", "/logout", "util").permitAll().anyRequest()
+//                .authenticated()
+//                .and().csrf().disable();
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider);
+    }
+}
