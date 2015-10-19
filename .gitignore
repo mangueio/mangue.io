@@ -1,1 +1,6 @@
 data/*
+*.iml
+.idea/*
+/target/
+*.dmp
+deploy.sh
