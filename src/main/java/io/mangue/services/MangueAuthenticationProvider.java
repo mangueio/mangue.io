@@ -9,7 +9,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;  
 import org.springframework.security.core.AuthenticationException;  
 import org.springframework.security.core.userdetails.User;  
-import org.springframework.security.core.userdetails.UserDetails;  
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +19,6 @@ import javax.ws.rs.core.Context;
 
 @Service
 public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
-
-    @Context
-    private HttpServletRequest request;
 
     @Autowired
     private UtilService utilService;
@@ -36,17 +35,17 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
         UserDetails loadedUser = null;
         io.mangue.models.User user = null;
 
-        App app = utilService.getAppFromHost(request.getHeader("Host"));
+//        App app = utilService.getAppFromHost(request.getHeader("Host"));
 
         try {
-             user = userRepository.findByUsername(username);
+            user = userRepository.findByUsername(username);
             loadedUser = new User(user.username, user.password, user.authorities);
         } catch (Exception repositoryProblem) {
             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
 
-        if(!(user != null && user.appId != null && app != null && app.id.equals(user.appId)))
-            throw new BadCredentialsException("User does not belong to app");
+//        if(!(user != null && user.appId != null && app != null && app.id.equals(user.appId)))
+//            throw new BadCredentialsException("User does not belong to app");
 
         if (loadedUser == null) {
             throw new InternalAuthenticationServiceException(

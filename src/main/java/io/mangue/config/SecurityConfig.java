@@ -1,4 +1,4 @@
-package io.mangue.bootstrap;
+package io.mangue.config;
 
 import io.mangue.services.MangueAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
