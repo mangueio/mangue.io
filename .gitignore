@@ -1,5 +1,9 @@
 data/*
 
+src/main/resources/node_modules/*
+src/main/resources/bower_components/*
+src/main/resources/libs/*
+
 .metadata/*
 .settings/*
 .classpath
@@ -7,7 +11,8 @@ data/*
 
 *.iml
 .idea/*
-/target/
+target/*
+/target
 
 *.dmp
 deploy.sh

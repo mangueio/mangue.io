@@ -23,14 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**");
+        web.ignoring().antMatchers("/js/**", "/css/**", "/libs/**", "/tpl/**", "/l10n/**", "/img/**", "/images/**", "/fonts/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().defaultSuccessUrl("/resource")
                 .and().logout().and().authorizeRequests()
-                .antMatchers("/", "/home", "/login", "/data", "/access", "/logout", "util").permitAll()
+                .antMatchers("/", "/index.html", "/home", "/login", "/data", "/access", "/logout", "util").permitAll()
                 .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/admin/api/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

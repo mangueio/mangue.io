@@ -33,9 +33,6 @@ public class UtilController {
     @RequestMapping("/checkUser")
     public String getUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        HttpServletRequest curRequest =
-//                ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-//                        .getRequest();
         Object object = null;
         if (auth != null && request != null) {
              object = auth.getPrincipal();
