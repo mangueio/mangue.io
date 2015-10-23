@@ -1,5 +1,5 @@
 <!-- hbox layout -->
-<div class="hbox hbox-auto-xs bg-light" ng-init="
+<div class="hbox hbox-auto-xs bg-light " ng-init="
   app.settings.asideFixed = true;
   app.settings.asideDock = false;
   app.settings.container = false;
@@ -25,7 +25,7 @@
             <div class="padder">
               <div class="list-group">
                 <a ng-repeat="note in notes | filter:query | orderBy:'date':true" class="list-group-item b-l-{{note.color}} b-l-3x hover-anchor" ng-class="{'hover': note.selected }" ng-click="selectNote(note)">
-                  <span ng-click="deleteNote(note)" class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
+                  <span ng-click='deleteNote(note)' class="pull-right text-muted hover-action"><i class="fa fa-times"></i></span>
                   <span class="block text-ellipsis">{{ note.content ? note.content : 'Empty note' }}</span>
                   <small class="text-muted">{{ note.date | fromNow }}</small>
                 </a>
@@ -53,7 +53,7 @@
       <div class="row-row">
         <div class="cell">
           <div class="cell-inner">
-            <textarea class="form-control no-radius no-border no-bg wrapper-lg text-md" style="height:100%" ng-model="note.content">
+            <textarea class="form-control no-radius no-border no-bg wrapper-lg text-md" style="height:100%;" ng-model="note.content">
             </textarea>
           </div>
         </div>

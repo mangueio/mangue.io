@@ -6,7 +6,7 @@
       <p class="m-b-lg text-muted">This map is based on data available at <a href="http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/">http://www.naturalearthdata.com</a>. Data is in <a href="http://www.naturalearthdata.com/about/terms-of-use/">public domain</a>.</p>
       <div class="row">
         <div class="col-sm-8">
-          <div style="height:240px" ui-jq="vectorMap" ui-options="{            
+          <div style="height:240px;" ui-jq="vectorMap" ui-options="{            
             map: 'world_mill_en',
             markers: {{world_markers}},
             normalizeFunction: 'polynomial',
@@ -25,7 +25,7 @@
                 stroke: '#fff'
               }
             }
-          }">
+          }" >
           </div>
           <div class="m-t-xl m-b clearfix">
             <i class="i i-local i-2x text-info pull-left m-r m-l m-t-xs"></i>
@@ -63,7 +63,7 @@
       <p class="m-b-lg text-muted">This map is based on data available at <a href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/">http://www.naturalearthdata.com</a>. Data is in <a href="http://www.naturalearthdata.com/about/terms-of-use/">public domain</a>.</p>
       <div class="row m-b-xl">
         <div class="col-sm-8">                      
-          <div style="height:240px" ui-jq="vectorMap" ui-options="{
+          <div style="height:240px;" ui-jq="vectorMap" ui-options="{
             map: 'us_aea_en',
             markers: {{usa_markers}},
             backgroundColor: '#fff',
@@ -100,7 +100,7 @@
                 ]
               }]
             }
-          }">
+          }" >
           </div>
         </div>
         <div class="col-sm-4">
@@ -125,7 +125,7 @@
               <p class="text-info font-bold">data</p>
             </div>
             <div class="inline text-center">
-              <div ui-jq="easyPieChart" ui-options="{
+              <div ui-jq="easyPieChart"  ui-options="{
                       percent: 30,
                       lineWidth: 4,
                       trackColor: '{{app.color.light}}',

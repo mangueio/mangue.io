@@ -46,7 +46,7 @@
         <th width="50"></th>
       </tr>
       <tr>
-        <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"></th>
+        <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
       </tr>
       </thead>
       <tbody>
@@ -119,13 +119,13 @@
       </tr>
       <tr>
         <th>
-          <input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search">
+          <input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search"/>
         </th>
         <th colspan="3">
-          <input st-search placeholder="global search" class="input-sm form-control" type="search">
+          <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
         </th>
         <th>
-          <input st-search="selectedPredicate" placeholder="bound predicate" class="input-sm form-control" type="search">
+          <input st-search="selectedPredicate" placeholder="bound predicate" class="input-sm form-control" type="search"/>
         </th>
       </tr>
       </thead>
@@ -146,7 +146,7 @@
     <div class="panel-body">
       <form>
         <label>items by page</label>
-        <input class="input-sm form-control" name="items" id="items" type="number" ng-model="itemsByPage">
+        <input class="input-sm form-control" name="items" id="items" type="number" ng-model="itemsByPage" >
       </form>
     </div>
     <table st-table="rowCollectionPage" class="table table-striped">
@@ -160,10 +160,10 @@
         </tr>
         <tr>
           <th>
-            <input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search">
+            <input st-search="'firstName'" placeholder="search for firstname" class="input-sm form-control" type="search"/>
           </th>
           <th colspan="4">
-            <input st-search placeholder="global search" class="input-sm form-control" type="search">
+            <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
           </th>
         </tr>
       </thead>
@@ -188,7 +188,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">pipe/ajax plugin</div>
-    <table st-table="rowCollectionPip" st-pipe="callServer" class="table table-striped">
+    <table st-table="rowCollectionPip"  st-pipe="callServer" class="table table-striped">
       <thead>
       <tr>
         <th st-sort="firstName">first name</th>
@@ -199,10 +199,10 @@
       </tr>
       <tr>
         <th>
-          <input st-search="firstName" placeholder="search for firstname" class="input-sm form-control" type="search">
+          <input st-search="firstName" placeholder="search for firstname" class="input-sm form-control" type="search"/>
         </th>
         <th colspan="4">
-          <input st-search placeholder="global search" class="input-sm form-control" type="search">
+          <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
         </th>
       </tr>
       </thead>

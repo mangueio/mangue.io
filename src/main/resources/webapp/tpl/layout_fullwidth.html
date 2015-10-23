@@ -1,12 +1,13 @@
 <!-- hbox layout -->
-<div class="hbox hbox-auto-xs bg-light" ng-controller="JVectorMapDemoCtrl" ng-init="
+<div class="hbox hbox-auto-xs bg-light " ng-controller="JVectorMapDemoCtrl" ng-init="
   app.settings.asideFolded = true;
   app.settings.asideDock = false;
   app.settings.container = false;
-  app.hideAside = true">
+  app.hideAside = true" 
+  >
   <!-- column -->
   <div class="col item">
-    <div ui-jq="vectorMap" class="h-full" style="min-height:240px" ui-options="{
+    <div ui-jq="vectorMap" class="h-full" style="min-height:240px;" ui-options="{
       map: 'us_aea_en',
       markers: {{usa_markers}},
       normalizeFunction: 'polynomial',
@@ -67,7 +68,7 @@
     </div>
     <div class="top" style="top:20px;left:60px">
       <div class="panel no-border w-md">
-        <div class="panel-heading">
+        <div class="panel-heading ">
           <a href class="pull-right" ng-click="isCollapsed = !isCollapsed" ui-toggle-class>
             <i class="fa fa-angle-up text"></i>
             <i class="fa fa-angle-down text-active"></i>

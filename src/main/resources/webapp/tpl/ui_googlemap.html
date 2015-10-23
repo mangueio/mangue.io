@@ -1,7 +1,9 @@
 <div class="wrapper-md">
   <div class="panel b-a" ng-controller="MapCtrl">
     <div class="panel-heading">Google Map</div>
-    <div id="map_canvas" style="min-height:400px" ui-map="myMap" ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-options="mapOptions">
+    <div id="map_canvas" style="min-height:400px" ui-map="myMap"
+         ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+         ui-options="mapOptions">
     </div>
     <div class="panel-body">
         <h4 class="m-t-none">Click to add a marker!</h4>
@@ -16,7 +18,8 @@
 
         <!-- this is the confusing part. we have to point the map marker directive
             at an existing google.maps.Marker object, so it can hook up events -->
-        <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+        <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+             ui-event="{'map-click': 'openMarkerInfo(marker)'}">
         </div>
 
         <div ui-map-info-window="myInfoWindow">

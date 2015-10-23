@@ -18,7 +18,7 @@
             </div>
             <div class="checkbox">
               <label class="i-checks">
-                <input type="checkbox" checked="checked" disabled="disabled"><i></i> Check me out
+                <input type="checkbox" checked disabled><i></i> Check me out
               </label>
             </div>
             <button type="submit" class="btn btn-sm btn-primary">Submit</button>
@@ -48,7 +48,7 @@
               <div class="col-lg-offset-2 col-lg-10">
                 <div class="checkbox">
                   <label class="i-checks">
-                    <input type="checkbox" checked="checked"><i></i> Remember me
+                    <input type="checkbox" checked><i></i> Remember me
                   </label>
                 </div>
               </div>
@@ -130,14 +130,14 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Placeholder</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="placeholder">
+            <input type="text"  class="form-control" placeholder="placeholder">
           </div>
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Disabled</label>
           <div class="col-lg-10">
-            <input class="form-control" type="text" placeholder="Disabled input here..." disabled="disabled">
+            <input class="form-control" type="text" placeholder="Disabled input here..." disabled>
           </div>
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
@@ -160,7 +160,7 @@
 
             <div class="radio">
               <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="checked">
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
                 Option one is this and that&mdash;be sure to include why it's great
               </label>
             </div>
@@ -201,21 +201,21 @@
             </div>
             <div class="checkbox">
               <label class="i-checks">
-                <input type="checkbox" checked="checked" value="">
+                <input type="checkbox" checked value="">
                 <i></i>
                 Option two checked
               </label>
             </div>
             <div class="checkbox">
               <label class="i-checks">
-                <input type="checkbox" checked="checked" disabled="disabled" value="">
+                <input type="checkbox" checked disabled value="">
                 <i></i>
                 Option three checked and disabled
               </label>
             </div>
             <div class="checkbox">
               <label class="i-checks">
-                <input type="checkbox" disabled="disabled" value="">
+                <input type="checkbox" disabled value="">
                 <i></i>
                 Option four disabled
               </label>
@@ -229,21 +229,21 @@
             </div>
             <div class="radio">
               <label class="i-checks">
-                <input type="radio" name="a" value="option2" checked="checked">
+                <input type="radio" name="a" value="option2" checked>
                 <i></i>
                 Option two checked
               </label>
             </div>
             <div class="radio">
               <label class="i-checks">
-                <input type="radio" value="option2" checked="checked" disabled="disabled">
+                <input type="radio" value="option2" checked disabled>
                 <i></i>
                 Option three checked and disabled
               </label>
             </div>
             <div class="radio">
               <label class="i-checks">
-                <input type="radio" name="a" disabled="disabled">
+                <input type="radio" name="a" disabled>
                 <i></i>
                 Option four disabled
               </label>
@@ -300,19 +300,19 @@
           <label class="col-sm-2 control-label">Switch</label>
           <div class="col-sm-10">
             <label class="i-switch m-t-xs m-r">
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" checked>
               <i></i>
             </label>
             <label class="i-switch bg-info m-t-xs m-r">
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" checked>
               <i></i>
             </label>
             <label class="i-switch bg-primary m-t-xs m-r">
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" checked>
               <i></i>
             </label>
             <label class="i-switch bg-danger m-t-xs m-r">
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" checked>
               <i></i>
             </label>
           </div>
@@ -323,11 +323,11 @@
           <label class="col-sm-2 control-label">Radio Switch</label>
           <div class="col-sm-10">
             <label class="i-switch bg-primary m-t-xs m-r">
-              <input type="radio" name="switch" checked="checked">
+              <input type="radio" name='switch' checked>
               <i></i>
             </label>
             <label class="i-switch bg-warning m-t-xs m-r">
-              <input type="radio" name="switch">
+              <input type="radio" name='switch'>
               <i></i>
             </label>
           </div>
@@ -338,11 +338,11 @@
           <label class="col-sm-2 control-label">Switch size</label>
           <div class="col-sm-10">
             <label class="i-switch i-switch-md bg-info m-t-xs m-r">
-              <input type="checkbox" checked="checked">
+              <input type="checkbox" checked>
               <i></i>
             </label>
             <label class="i-switch i-switch-lg bg-dark m-t-xs m-r">
-              <input type="checkbox">
+              <input type="checkbox" >
               <i></i>
             </label>
           </div>
@@ -359,7 +359,7 @@
               <option>option 4</option>
             </select>
             <div class="col-lg-4 m-l-n">
-              <select multiple="multiple" class="form-control">
+              <select multiple class="form-control">
                 <option>option 1</option>
                 <option>option 2</option>
                 <option>option 3</option>
@@ -536,7 +536,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Button radio</label>
           <div class="col-sm-10">
-            <div class="btn-group m-r" ng-controller="ButtonsDemoCtrl">
+            <div class="btn-group m-r" ng-controller="ButtonsDemoCtrl" >
               <label class="btn btn-default" ng-model="radioModel" btn-radio="'Left'" uncheckable>Left</label>
               <label class="btn btn-default" ng-model="radioModel" btn-radio="'Middle'" uncheckable>Middle</label>
               <label class="btn btn-default" ng-model="radioModel" btn-radio="'Right'" uncheckable>Right</label>
@@ -583,7 +583,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Range selector</label>
           <div class="col-sm-10">
-            <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,750]">
+            <input type="text" ui-jq="slider" class="slider form-control" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,750]" >
           </div>
         </div>
 
@@ -592,13 +592,13 @@
           <label class="col-sm-2 control-label">Spinner</label>
           <div class="col-sm-10">
             <div class="m-b">
-              <input ui-jq="TouchSpin" type="text" value="0" class="form-control" data-min="0" data-max="10" data-step="0.1" data-decimals="2" data-prefix="$">
+              <input ui-jq="TouchSpin" type="text" value="0" class="form-control" data-min='0' data-max="10" data-step="0.1" data-decimals="2" data-prefix="$">
             </div>
             <div class="m-b">
-              <input ui-jq="TouchSpin" type="text" value="5" class="form-control" data-min="0" data-max="10" data-step="0.1" data-decimals="2" data-postfix="%">
+              <input ui-jq="TouchSpin" type="text" value="5" class="form-control" data-min='0' data-max="10" data-step="0.1" data-decimals="2" data-postfix="%">
             </div>
             <div>
-              <input ui-jq="TouchSpin" type="text" value="10" class="form-control" data-min="0" data-max="20" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up" data-verticaldownclass="fa fa-caret-down">
+              <input ui-jq="TouchSpin" type="text" value="10" class="form-control" data-min='0' data-max="20" data-verticalbuttons="true" data-verticalupclass="fa fa-caret-up"  data-verticaldownclass="fa fa-caret-down">
             </div>
           </div>
         </div>
@@ -671,7 +671,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Chosen multiple</label>
           <div class="col-sm-10">
-            <select ui-jq="chosen" multiple="multiple" class="w-md">
+            <select ui-jq="chosen" multiple class="w-md">
               <option value="AK">Alaska</option>
               <option value="HI">Hawaii</option>
               <option value="CA">California</option>
@@ -686,7 +686,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Tags input</label>
           <div class="col-sm-10">
-            <input ui-jq="tagsinput" ui-options="" class="form-control w-md">
+            <input ui-jq="tagsinput" ui-options="" class="form-control w-md" />
           </div>
         </div>
 
@@ -695,7 +695,7 @@
           <label class="col-sm-2 control-label">Datepicker</label>
           <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
             <div class="input-group w-md">
-              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -711,7 +711,7 @@
                 format: 'YYYY-MM-DD',
                 startDate: '2013-01-01',
                 endDate: '2013-12-31'
-              }" class="form-control w-md">
+              }" class="form-control w-md" />
           </div>
         </div>
 
@@ -719,7 +719,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">File input</label>
           <div class="col-sm-10">
-            <input ui-jq="filestyle" type="file" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s">
+            <input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
           </div>
         </div>
         <div class="line line-dashed b-b line-lg pull-in"></div>
@@ -764,7 +764,7 @@
                 <a class="btn btn-default" dropdown-toggle tooltip="Hyperlink"><i class="fa fa-link"></i></a>
                 <div class="dropdown-menu">
                   <div class="input-group m-l-xs m-r-xs">
-                    <input class="form-control input-sm" id="LinkInput" placeholder="URL" type="text" data-edit="createLink">
+                    <input class="form-control input-sm" id="LinkInput" placeholder="URL" type="text" data-edit="createLink"/>
                     <div class="input-group-btn">
                       <button class="btn btn-sm btn-default" type="button">Add</button>
                     </div>
@@ -775,7 +775,7 @@
               
               <div class="btn-group">
                 <a class="btn btn-default" tooltip="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
-                <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px">
+                <input type="file" data-edit="insertImage" style="position:absolute; opacity:0; width:41px; height:34px" />
               </div>
               <div class="btn-group">
                 <a class="btn btn-default" data-edit="undo" tooltip="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
