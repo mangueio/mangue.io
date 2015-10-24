@@ -22,11 +22,6 @@ public class HttpSessionConfig extends AbstractHttpSessionApplicationInitializer
     }
 
     @Bean
-    public JedisConnectionFactory connectionFactory() {
-        return new JedisConnectionFactory();
-    }
-
-    @Bean
     public HttpSessionStrategy httpSessionStrategy(){
         return  new CookieAndHeaderHttpSessionStrategy();
     }

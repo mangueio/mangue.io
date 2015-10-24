@@ -1,5 +1,8 @@
 package io.mangue.controllers;
 
+import io.mangue.services.UtilService;
+import io.mangue.util.ProfileType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,9 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class PagesController {
 
+    @Autowired
+    private UtilService utilService;
+
     @RequestMapping("/")
     public String home() {
-        return "home";
+        if(utilService.applicationProfile() == ProfileType.DEV)
+            return "indexmin";
+        else
+            return "index";
     }
 
 

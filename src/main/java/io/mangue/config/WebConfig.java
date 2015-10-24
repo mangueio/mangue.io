@@ -4,6 +4,7 @@ import io.mangue.interceptors.DomainInterceptor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.resource.GzipResourceResolver;
  * Created by misael on 17/10/2015.
  */
 @Configuration
+@EnableScheduling
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
