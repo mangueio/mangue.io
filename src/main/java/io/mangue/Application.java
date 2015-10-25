@@ -17,34 +17,32 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class Application implements AsyncConfigurer{
 
-    @Value("${async.core-pool-size}")
+    @Value("${async.corePoolSize:5}")
     public Integer corePoolSize; // 5
 
-    @Value("${async.max-pool-size}")
+    @Value("${async.maxPoolSize:30}")
     public Integer maxPoolSize; // 30
 
-    @Value("${async.queue-capacity}")
+    @Value("${async.queueCapacity:15}")
     public Integer queueCapacity; // 15
 
-    @Value("${async.thread-name-prefix}")
+    @Value("${async.threadNamePrefix:'AsyncExecutor-'}")
     public String threadNamePrefix;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public Executor taskExecutor() {
-        return new SimpleAsyncTaskExecutor();
-    }
-
+    /**
+     * @Async API thread pool
+     * */
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(corePoolSize != null? corePoolSize: 5);
-        executor.setMaxPoolSize(maxPoolSize != null? maxPoolSize: 30);
-        executor.setQueueCapacity(queueCapacity != null? queueCapacity: 15);
-        executor.setThreadNamePrefix(threadNamePrefix != null? threadNamePrefix: "AsyncExecutor-");
+        executor.setCorePoolSize(corePoolSize);
+        executor.setMaxPoolSize(maxPoolSize);
+        executor.setQueueCapacity(queueCapacity);
+        executor.setThreadNamePrefix(threadNamePrefix);
         executor.initialize();
         return executor;
     }

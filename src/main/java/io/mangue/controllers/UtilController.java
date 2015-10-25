@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.listener.Topic;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -20,6 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
+import java.util.List;
 
 /**
  * Created by misael on 18/10/2015.
@@ -35,6 +37,10 @@ public class UtilController {
 //    private UriInfo uriInfo;
 
     @Autowired
+    @Qualifier("sessionRegistry")
+    private SessionRegistry sessionRegistry;
+
+    @Autowired
     private AsyncService asyncService;
 
     @Autowired
@@ -48,6 +54,8 @@ public class UtilController {
         if (auth != null) {
              object = auth.getPrincipal();
         }
+
+        List<Object> ps =  sessionRegistry.getAllPrincipals();
         return object + "";
     }
 

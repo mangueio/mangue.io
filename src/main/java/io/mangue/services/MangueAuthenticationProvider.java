@@ -32,14 +32,12 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
 
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-        UserDetails loadedUser = null;
-        io.mangue.models.User user = null;
+        UserDetails user = null;
 
 //        App app = utilService.getAppFromHost(request.getHeader("Host"));
 
         try {
             user = userRepository.findByUsername(username);
-            loadedUser = new User(user.username, user.password, user.authorities);
         } catch (Exception repositoryProblem) {
             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
@@ -47,10 +45,10 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
 //        if(!(user != null && user.appId != null && app != null && app.id.equals(user.appId)))
 //            throw new BadCredentialsException("User does not belong to app");
 
-        if (loadedUser == null) {
+        if (user == null) {
             throw new InternalAuthenticationServiceException(
                     "UserDetailsService returned null, which is an interface contract violation");
         }
-        return loadedUser;
+        return user;
     }
 }
