@@ -1,5 +1,6 @@
 package io.mangue.controllers;
 
+import io.mangue.services.AsyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.listener.Topic;
@@ -34,6 +35,9 @@ public class UtilController {
 //    private UriInfo uriInfo;
 
     @Autowired
+    private AsyncService asyncService;
+
+    @Autowired
     @Qualifier("applicationChannel")
     private Topic topic;
 
@@ -55,6 +59,7 @@ public class UtilController {
 
     @RequestMapping("/asyncTest")
     public String asyncTest(){
+        asyncService.asyncTest();
         return "ok";
     }
 }

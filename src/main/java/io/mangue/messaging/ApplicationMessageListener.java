@@ -1,4 +1,4 @@
-package io.mangue.message;
+package io.mangue.messaging;
 
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
