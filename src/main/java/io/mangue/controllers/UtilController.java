@@ -60,7 +60,9 @@ public class UtilController {
         }
 
         List<Object> ps =  sessionRegistry.getAllPrincipals();
-        return (User) object;
+        if(object instanceof User)
+            return (User) object;
+        return new User();
     }
 
     @RequestMapping("/topic")
