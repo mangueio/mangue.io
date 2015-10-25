@@ -1,5 +1,6 @@
 package io.mangue.controllers;
 
+import io.mangue.models.User;
 import io.mangue.services.AsyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -47,8 +49,10 @@ public class UtilController {
     @Qualifier("applicationChannel")
     private Topic topic;
 
-    @RequestMapping("/checkUser")
-    public String getUser() {
+    @RequestMapping(value = "/checkUser",
+            produces = MediaType.APPLICATION_JSON,
+            method = RequestMethod.GET)
+    public User getUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object object = null;
         if (auth != null) {
@@ -56,7 +60,7 @@ public class UtilController {
         }
 
         List<Object> ps =  sessionRegistry.getAllPrincipals();
-        return object + "";
+        return (User) object;
     }
 
     @RequestMapping("/topic")

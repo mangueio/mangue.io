@@ -1,6 +1,7 @@
 package io.mangue.services;
 
 import io.mangue.models.App;
+import io.mangue.models.User;
 import io.mangue.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -8,7 +9,6 @@ import org.springframework.security.authentication.InternalAuthenticationService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;  
 import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;  
 import org.springframework.security.core.AuthenticationException;  
-import org.springframework.security.core.userdetails.User;  
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
 
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-        UserDetails user = null;
+        User user = null;
 
 //        App app = utilService.getAppFromHost(request.getHeader("Host"));
 
