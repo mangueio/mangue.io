@@ -5,21 +5,24 @@ Mangue Cloud APIs
 - Install and run Redis on the default port
 - Install and run Mongo on port 9998
 
-### MongoDB
+#### MongoDB
 
 To use 'mangue' mongodb settings, make sure that you run mongod server using de '/mongo.conf' and that theand that the directories listed in the configuration file actually exist on your system's drive'.
 
 If you want to use mongodb on the default settings (as a system service), change the application-dev.properties file, search mongodb settings and change the port to 27017.
 
-###MySQL
+####MySQL
 
 Create mangue_quartz scheme
 run the following command on mysql terminal to add permissions to the mangue user:
 . GRANT ALL ON * TO mangue_quartz mangue @ localhost IDENTIFIED BY 'mangue';
 
+####Source Code
 Clone the https://github.com/mangueio/mangue.io project | git@github.com: mangueio / mangue.io.git
 
 or update to get the latest version: 'git pull'
+
+####IntelliJ
 
 Import the project using IntelliJ Import Wizard and set the project as a 'maven project'
 
