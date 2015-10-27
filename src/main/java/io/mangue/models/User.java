@@ -16,6 +16,7 @@ import java.util.Set;
 /**
  * Created by misael on 17/10/2015.
  */
+//@JsonIgnoreProperties(value = { "intValue" })
 @Document
 public class User implements UserDetails {
     @Id

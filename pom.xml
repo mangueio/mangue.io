@@ -124,7 +124,10 @@
 			<artifactId>spring-security-messaging</artifactId>
 			<version>4.0.2.RELEASE</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+		</dependency>
 
 		<!-- JDBC -->
 		<dependency>

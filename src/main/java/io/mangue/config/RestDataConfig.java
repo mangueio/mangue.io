@@ -24,12 +24,12 @@ public class RestDataConfig  extends RepositoryRestConfigurerAdapter {
   }
 
   @Bean
-  MessageListenerAdapter messageListener() {
+  public MessageListenerAdapter messageListener() {
     return new MessageListenerAdapter( new ApplicationMessageListener() );
   }
 
   @Bean
-  RedisMessageListenerContainer redisContainer(JedisConnectionFactory jcf) {
+  public RedisMessageListenerContainer redisContainer(JedisConnectionFactory jcf) {
     RedisMessageListenerContainer container = new RedisMessageListenerContainer();
     container.setTaskExecutor(taskExecutor());
     container.setConnectionFactory(jcf);
