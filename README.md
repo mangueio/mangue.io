@@ -24,28 +24,28 @@ or update to get the latest version: 'git pull'
 
 ####IntelliJ
 
-Import the project using IntelliJ Import Wizard and set the project as a 'maven project'
+- Import the project using IntelliJ Import Wizard and set the project as a 'maven project'
 
-Intellij: ctrl + alt + s -> Keymap -> Keymaps, to set to eclipse -> ok # optional settings for eclipse keymappings
+- Intellij: ctrl + alt + s -> Keymap -> Keymaps, to set to eclipse -> ok # optional settings for eclipse keymappings
 
-sidebar -> projects -> make sure that the pom.xml file (mangue) has the maven icon (an M). If not, right click pom.xml and select the last menu item to 'add as maven project'.
+- sidebar -> projects -> make sure that the pom.xml file (mangue) has the maven icon (an M). If not, right click pom.xml and select the last menu item to 'add as maven project'.
 
-If the projects sidebar is not visible -> Alt + 1
+- If the projects sidebar is not visible -> Alt + 1
 
-Make sure that the project does not contain compilation errors.
+- Make sure that the project does not contain compilation errors.
 
-If errors exist, make sure that maven was successfully imported:
+- If errors exist, make sure that maven was successfully imported:
 Ctrl + Alt + S -> Search Box: "Maven" -> Build, exection, Deployment> Build Tools -> Maven> Importing> Import Maven Projects atomatically
 
-If errors still exist, check the project modules:
+- If errors still exist, check the project modules:
 Ctrl + Shift + Alt + S> Modules> remove all the modules that are not mangue (eg, main, test) ... just mangue should be listed.
 
-Make sure artifacts and libraries are imported and visible in the project.
+- Make sure artifacts and libraries are imported and visible in the project.
 
-If the project still shows compilation errors, Top Menu> View> Tool Windows> Maven Projects> Mangrove> Lifecycle> Right to Clean> Run 'mangrove [clean]'; then Right Compile> Run 'mangrove [compile]'
+- If the project still shows compilation errors, Top Menu> View> Tool Windows> Maven Projects> Mangrove> Lifecycle> Right to Clean> Run 'mangrove [clean]'; then Right Compile> Run 'mangrove [compile]'
 
-Set the running class:
+- Set the running class:
 Top Menu> Run> Edit Configurations ...> + > Application > configure the class name: io.mangue.Application and name the configuration > Ok
 
-If you can not run the project, create an issue on github:
+- If you can not run the project, create an issue on github:
 https://github.com/mangueio/mangue.io/issues
