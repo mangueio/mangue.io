@@ -11,6 +11,9 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.resource.GzipResourceResolver;
 
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
 /**
  * Created by misael on 17/10/2015.
  */
@@ -22,11 +25,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new DomainInterceptor());
     }
-
-//    @Bean
-//    public RequestContextListener requestContextListener() {
-//        return new RequestContextListener();
-//    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
