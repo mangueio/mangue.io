@@ -56,7 +56,7 @@ public class UtilController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Object object = null;
         if (auth != null) {
-             object = auth.getPrincipal();
+            object = auth.getPrincipal();
         }
 
         List<Object> ps =  sessionRegistry.getAllPrincipals();

@@ -1,6 +1,8 @@
 package io.mangue.config;
 
 import io.mangue.interceptors.DomainInterceptor;
+import io.mangue.util.ProfileType;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,9 @@ import javax.servlet.ServletContextListener;
 @EnableScheduling
 public class WebConfig extends WebMvcConfigurerAdapter {
 
+    @Value("${spring.profiles.active}")
+    public String profile;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new DomainInterceptor());
@@ -28,6 +33,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/websrc/", "classpath:/webapp/").resourceChain(true).addResolver(new GzipResourceResolver());
+        String path = "classpath:/webapp/";
+        if(profile != null && profile.equals("dev"))
+        path = "classpath:/websrc/";
+
+        registry.addResourceHandler("/**").addResourceLocations(path).resourceChain(true).addResolver(new GzipResourceResolver());
     }
 }

@@ -19,9 +19,10 @@ public class PagesController {
     @RequestMapping("/")
     public String home() {
         if(utilService.applicationProfile() == ProfileType.DEV)
-            return "indexmin";
-        else
             return "index";
+        else
+            return "indexmin";
+
     }
 
 

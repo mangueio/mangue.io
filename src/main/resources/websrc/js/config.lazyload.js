@@ -174,6 +174,12 @@ angular.module('app')
           files: [
               '/libs/angular/angular-skycons/angular-skycons.js'
           ]
+      },
+      {
+          name: 'AngularStompDK',
+          files: [
+              '/libs/angular/stomp-websocket/lib/stomp.min.js', '/libs/angular/sockjs-client/dist/sockjs.min.js', '/libs/angular/AngularStompDK/dist/angular-stomp.min.js'
+          ]
       }
     ]
   )
