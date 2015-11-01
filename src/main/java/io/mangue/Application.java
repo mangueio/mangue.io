@@ -1,10 +1,14 @@
 package io.mangue;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import io.mangue.actors.SpringExtension;
 import io.mangue.exceptions.MyAsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -30,7 +34,15 @@ public class Application implements AsyncConfigurer{
     public String threadNamePrefix;
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ApplicationContext context = SpringApplication.run(Application.class, args);
+        startActorSystem(context);
+    }
+
+    public static void startActorSystem(ApplicationContext context){
+        ActorSystem system = context.getBean(ActorSystem.class);
+        SpringExtension ext = context.getBean(SpringExtension.class);
+        // Use the Spring Extension to create props for a named actor bean
+        ActorRef supervisor = system.actorOf(ext.props("supervisor"));
     }
 
     /**
