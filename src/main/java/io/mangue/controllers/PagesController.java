@@ -5,6 +5,7 @@ import io.mangue.util.ProfileType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,7 +17,7 @@ public class PagesController {
     @Autowired
     private UtilService utilService;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String home() {
         if(utilService.applicationProfile() == ProfileType.DEV)
             return "index";
@@ -24,6 +25,12 @@ public class PagesController {
             return "indexmin";
 
     }
+
+    @RequestMapping(value = "/app/**", method = RequestMethod.GET)
+    public String app() { return home(); }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() { return home(); }
 
 
     @RequestMapping("/test")

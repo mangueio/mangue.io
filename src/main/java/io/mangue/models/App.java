@@ -1,10 +1,12 @@
 package io.mangue.models;
 
-import org.joda.time.DateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
 
 /**
  * Created by misael on 19/10/2015.
@@ -19,8 +21,10 @@ public class App {
     public String subdomain;
 
     @CreatedDate
-    public DateTime createdAt;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    public Date createdAt;
 
     @LastModifiedDate
-    public DateTime updateAt;
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER)
+    public Date updateAt;
 }

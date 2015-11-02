@@ -13,8 +13,8 @@ angular.module('app')
     ]
   )
   .config(
-    [          '$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'MODULE_CONFIG', 
-      function ($stateProvider,   $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG) {
+    [          '$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'MODULE_CONFIG', '$locationProvider',
+      function ($stateProvider,   $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG, $locationProvider) {
           var layout = "tpl/app.html";
           if(window.location.href.indexOf("material") > 0){
             layout = "tpl/blocks/material.layout.html";
@@ -24,6 +24,10 @@ angular.module('app')
             $urlRouterProvider
               .otherwise('/app/dashboard-v1');
           }
+
+          $locationProvider.html5Mode({
+              enabled: true,
+          });
           
           $stateProvider
               .state('app', {

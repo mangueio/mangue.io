@@ -1,19 +1,22 @@
 package io.mangue.controllers;
 
+import io.mangue.models.App;
 import io.mangue.models.User;
+import io.mangue.repositories.AppRepository;
 import io.mangue.services.AsyncService;
+import io.mangue.services.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.listener.Topic;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -46,6 +49,12 @@ public class UtilController {
     private AsyncService asyncService;
 
     @Autowired
+    private UtilService utilService;
+
+    @Autowired
+    private AppRepository appRepository;
+
+    @Autowired
     @Qualifier("applicationChannel")
     private Topic topic;
 
@@ -69,6 +78,15 @@ public class UtilController {
     public String getTopic(){
         Assert.isTrue(topic != null && "pubsub:application".equals(topic.getTopic()));
         return topic.getTopic();
+    }
+
+    @PreAuthorize("hasAuthority('SUPERUSER')")
+    @CrossOrigin
+    @RequestMapping(value = "/newApp", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public App createApp(@RequestBody App app){
+        appRepository.save(app);
+        return app;
     }
 
     @RequestMapping("/asyncTest")

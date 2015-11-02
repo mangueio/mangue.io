@@ -1,5 +1,7 @@
 package io.mangue.config;
 
+import io.mangue.services.RestAuthenticationEntryPoint;
+import io.mangue.services.RestAuthenticationSuccessHandler;
 import io.mangue.services.MangueAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -13,15 +15,23 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 //import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true, prePostEnabled = true)
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MangueAuthenticationProvider authenticationProvider;
+
+    @Autowired
+    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    @Autowired
+    private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -35,14 +45,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().defaultSuccessUrl("/resource")
-                .and().logout().and().authorizeRequests()
-                .antMatchers("/", "/index.html", "/home", "/login", "/data", "/data/**", "/access", "/logout", "/util/**").permitAll()
+                http//.formLogin().and() // .formLogin()// .defaultSuccessUrl("/resource").and()
+                //.logout().and()
+                .authorizeRequests()
+                //.antMatchers("/", "/app/**", "/index.html", "/home", "/login", "/data", "/data/**", "/access", "/logout", "/util/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/admin/api/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and().csrf().disable()
-                .sessionManagement().maximumSessions(-1).sessionRegistry(sessionRegistry());;
+                .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint)
+                .and()
+                .formLogin()
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .successHandler(restAuthenticationSuccessHandler)
+                .failureHandler(authFailureHandler())
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .and()
+                .sessionManagement().maximumSessions(-1).sessionRegistry(sessionRegistry());
+
+    }
+
+    @Bean
+    public SimpleUrlAuthenticationFailureHandler authFailureHandler(){
+        return new SimpleUrlAuthenticationFailureHandler();
+    }
+
+    @Bean
+    public SimpleUrlAuthenticationSuccessHandler authSuccessHandler(){
+        return new SimpleUrlAuthenticationSuccessHandler();
     }
 
     @Autowired

@@ -46,8 +46,7 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
 //            throw new BadCredentialsException("User does not belong to app");
 
         if (user == null) {
-            throw new InternalAuthenticationServiceException(
-                    "UserDetailsService returned null, which is an interface contract violation");
+            throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
         }
         return user;
     }
