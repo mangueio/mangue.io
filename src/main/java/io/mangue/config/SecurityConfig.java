@@ -1,8 +1,8 @@
 package io.mangue.config;
 
+import io.mangue.services.MangueAuthenticationProvider;
 import io.mangue.services.RestAuthenticationEntryPoint;
 import io.mangue.services.RestAuthenticationSuccessHandler;
-import io.mangue.services.MangueAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
@@ -49,9 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.logout().and()
                 .authorizeRequests()
                 //.antMatchers("/", "/app/**", "/index.html", "/home", "/login", "/data", "/data/**", "/access", "/logout", "/util/**").permitAll()
-                .antMatchers("/**").hasAuthority("SUPERUSER")
-                .antMatchers("/admin/api/**").hasAuthority("ADMIN")
-                .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/admin/api/**").hasAnyAuthority("ADMIN", "SUPERUSER")
+                .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN", "SUPERUSER")
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
