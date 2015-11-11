@@ -7,26 +7,22 @@ import io.mangue.services.AsyncService;
 import io.mangue.services.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.actuate.endpoint.InfoEndpoint;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.listener.Topic;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by misael on 18/10/2015.
@@ -40,6 +36,8 @@ public class UtilController {
 //
 //    @Context
 //    private UriInfo uriInfo;
+
+    @Autowired private RedisTemplate< String, Object > template;
 
     @Autowired
     @Qualifier("sessionRegistry")
@@ -57,6 +55,9 @@ public class UtilController {
     @Autowired
     @Qualifier("applicationChannel")
     private Topic topic;
+
+    @Autowired
+    private InfoEndpoint infoEndpoint;
 
     @RequestMapping(value = "/checkUser",
             produces = MediaType.APPLICATION_JSON,
@@ -93,5 +94,18 @@ public class UtilController {
     public String asyncTest(){
         asyncService.asyncTest();
         return "ok";
+    }
+
+    @RequestMapping(value = "/testRedisTemplate", method = RequestMethod.GET)
+    public String  testRedisTemplate(){
+        String random = UUID.randomUUID().toString();
+        template.opsForValue().set(random , "val" );
+        template.expire( random, 10, TimeUnit.SECONDS );
+        return "ok";
+    }
+
+    @RequestMapping(value = "/getGit", method = RequestMethod.GET)
+    public Map<String, Object> getGit(){
+        return infoEndpoint.invoke();
     }
 }

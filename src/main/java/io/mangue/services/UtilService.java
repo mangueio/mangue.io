@@ -9,6 +9,11 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 /**
  * Created by misael on 19/10/2015.
@@ -40,5 +45,36 @@ public class UtilService {
 
     public HttpServletResponse getHttpServletResponse(){
         return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
+    }
+
+    /**
+     * Get the host name/ip
+     * @return
+     */
+    public String getHost(){
+        Enumeration<NetworkInterface> e;
+        try {
+            e = NetworkInterface.getNetworkInterfaces();
+            while(e.hasMoreElements()){
+                NetworkInterface n=(NetworkInterface) e.nextElement();
+                Enumeration<InetAddress> ee = n.getInetAddresses();
+                while(ee.hasMoreElements()){
+                    InetAddress inetAddress = (InetAddress) ee.nextElement();
+                    if (inetAddress instanceof Inet4Address){
+                        String host = inetAddress.getHostAddress();
+                        if(host.equals("127.0.0.1") == false && host.equals("127.0.1.1") == false && host.equals("0.0.0.0") == false){
+                            return host;
+                        }
+                    }
+                }
+            }
+        } catch (SocketException e1) {
+            e1.printStackTrace();
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+        return null;
+        //		return "192.168.181.1";
     }
 }

@@ -63,4 +63,5 @@ public class Application implements AsyncConfigurer{
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new ApplicationAsyncUncaughtExceptionHandler();
     }
+
 }
