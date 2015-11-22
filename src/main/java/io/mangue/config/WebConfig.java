@@ -31,12 +31,4 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new DomainInterceptor());
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String path = "classpath:/webapp/";
-        if(profile != null && profile.equals("dev"))
-        path = "classpath:/websrc/";
-
-        registry.addResourceHandler("/**").addResourceLocations(path).resourceChain(true).addResolver(new GzipResourceResolver());
-    }
 }
