@@ -34,7 +34,8 @@ angular.module('app')
           asideFixed: true,
           asideFolded: false,
           asideDock: false,
-          container: false
+          container: false,
+          hideFooter: true,
         }
       }
 

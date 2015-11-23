@@ -42,6 +42,13 @@ angular.module('app')
                   resolve: load(['js/controllers/chart.js']),
                   headerName: 'Dashboard'
               })
+              .state('app.users', {
+                  url: '/users',
+                  templateUrl: 'tpl/app/users.html',
+                  resolve: load(['js/controllers/app/users.js']),
+                  controller: 'UsersCtrl',
+                  headerName: 'Users'
+              })
               .state('app.dashboard-v1', {
                   url: '/dashboard-v1',
                   templateUrl: 'tpl/app_dashboard_v1.html',
