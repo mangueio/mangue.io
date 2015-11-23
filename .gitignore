@@ -8,6 +8,7 @@ src/main/webapp/css/app.min.css
 mvnw
 mvnw.cmd
 
+
 .metadata/*
 .settings/*
 .classpath
