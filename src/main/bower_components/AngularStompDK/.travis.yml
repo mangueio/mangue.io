@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- "0.12"
+
+install:
+- npm install --quiet -g gulp karma bower
+
+before_script:
+- npm install
+
+script: npm test
+
+after_success:
+- gulp coveralls
