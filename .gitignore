@@ -7,6 +7,7 @@ src/main/webapp/js/app.src.js
 mvnw
 mvnw.cmd
 
+
 .metadata/*
 .settings/*
 .classpath
