@@ -38,7 +38,7 @@ angular.module('app')
               })
               .state('app.dashboard', {
                   url: '/dashboard',
-                  templateUrl: 'tpl/dashboard.html',
+                  templateUrl: 'tpl/app/dashboard.html',
                   resolve: load(['js/controllers/chart.js']),
                   headerName: 'Dashboard'
               })

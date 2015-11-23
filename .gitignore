@@ -2,11 +2,9 @@ data/*
 
 src/main/node_modules/*
 src/main/bower_components/*
-src/main/webapp/libs/*
 
 mvnw
 mvnw.cmd
-
 
 .metadata/*
 .settings/*
