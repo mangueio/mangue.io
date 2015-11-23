@@ -3,6 +3,7 @@ data/*
 src/main/node_modules/*
 src/main/bower_components/*
 src/main/webapp/js/app.src.js
+src/main/webapp/css/app.min.css
 
 mvnw
 mvnw.cmd
