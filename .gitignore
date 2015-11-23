@@ -1,8 +1,8 @@
 data/*
 
-src/main/resources/node_modules/*
-src/main/resources/bower_components/*
-src/main/resources/libs/*
+src/main/node_modules/*
+src/main/bower_components/*
+src/main/webapp/libs/*
 
 .metadata/*
 .settings/*
