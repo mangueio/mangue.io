@@ -110,6 +110,7 @@
     "angular-skycons": "~2.0.0",
     "ng-stomp": "~0.0.2",
     "AngularStompDK": "~0.3.2",
-    "sockjs-client": "~1.0.3"
+    "sockjs-client": "~1.0.3",
+    "mdi": "*"
   }
 }
