@@ -295,3 +295,99 @@
 .b-b-n{
   border-top: 0;
 }
+
+/* ui-grid */
+.table-wrapper{position: absolute; bottom: 0; top: 65px; width: 100%; background:#f9fafb}
+.ui-grid-row-header-cell {background-color: #f9fafb!important; border-bottom: solid 1px #f9fafb!important;}
+.ui-grid-render-container-body{left:34px; border-left: 1px solid #efefef; background: #fff}
+.table-wrapper .ui-grid-render-container{height: 100%;font-family: Inconsolata, Monaco, Menlo, Consolas, 'Courier New', monospace;}
+.table-wrapper.ui-grid{border-color: #DEE5E7!important; border-left: none!important; border-right: none!important;}
+.table-panel{position: absolute;margin-bottom: 0;bottom: 50px;top: 50px;right: 0;left: 200px}
+.app-aside-folded .table-panel{left: 60px;}
+.cell .table-panel{position: absolute;margin-bottom: 0;bottom: 0;top: 0;right: 0;left: 0}
+
+.ui-grid-header-cell{max-height: 30px}
+.ui-grid-cell-focus {background-color: #ccdbe6!important;}
+.ui-grid-padding{padding: 5px;}
+.ui-grid-cell, .ui-grid-header {border-color: #edf1f2!important;}
+.ui-grid-header-cell {border-color: #edf1f2!important;}
+.ui-grid-top-panel{background: #f9fafb!important; -webkit-box-shadow: 0px 3px 7px -3px rgba(50, 50, 50, 0.25)!important; -moz-box-shadow: 0px 3px 7px -3px rgba(50, 50, 50, 0.25)!important; box-shadow: 0px 3px 7px -3px rgba(50, 50, 50, 0.25)!important; z-index: 1}
+.ui-grid-header-cell .ui-grid-cell-contents{background: #fff}
+.ui-grid-row:nth-child(odd) .ui-grid-cell{background: #f9fafb!important}
+.ui-grid-row:nth-child(even) .ui-grid-cell{background: #fff!important}
+.ui-grid-row-selected.ui-grid-row:nth-child(odd) .ui-grid-cell,
+.ui-grid-row-selected.ui-grid-row:nth-child(even) .ui-grid-cell{background: #ccdbe6!important}
+/* .ui-grid-cell {overflow: visible;} */
+.ui-grid-cell .ui-grid-wrapped-data{overflow: hidden;}
+.ui-grid-cell div input{border: none!important; height: 29px!important;}
+.ui-grid-cell div input:focus{background-color: #FFFCAB!important; padding: 5px; border: 1px solid #23b7e5!important;}
+.ui-grid-vertical-bar{background-color: #edf1f2!important}
+.ui-grid-menu .ui-grid-menu-inner{background-color: #fff!important;}
+.ui-grid-menu .ui-grid-menu-inner ul li.ui-grid-menu-item-active{background-color: #fdfdfd!important;}
+.ui-grid-pager-panel {padding: 4px; padding-left: 30px!important}
+.ui-grid-pager-panel button {font-weight: 500;border-radius: 2px;outline: 0!important;
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  opacity: .65;
+  color: #58666e !important;
+  background-color: #fcfdfd;
+  background-color: #fff;
+  border-color: #dee5e7;
+  border-bottom-color: #d8e1e3;
+  -webkit-box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+  box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  font-family: inherit;
+  text-transform: none;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.ui-grid-pager-panel button:hover,
+.ui-grid-pager-panel button:focus,
+.ui-grid-pager-panel button:active,
+.ui-grid-pager-panel button.active{
+  color: #58666e !important;
+  background-color: #edf1f2;
+  border-color: #c7d3d6;
+}
+
+.ui-grid-pager-panel button.disabled,
+.ui-grid-pager-panel button[disabled],
+fieldset[disabled] .ui-grid-pager-panel button,
+.ui-grid-pager-panel button.disabled:hover,
+.ui-grid-pager-panel button[disabled]:hover,
+fieldset[disabled] .ui-grid-pager-panel button:hover,
+.ui-grid-pager-panel button.disabled:focus,
+.ui-grid-pager-panel button[disabled]:focus,
+fieldset[disabled] .ui-grid-pager-panel button:focus,
+.ui-grid-pager-panel button.disabled:active,
+.ui-grid-pager-panel button[disabled]:active,
+fieldset[disabled] .ui-grid-pager-panel button:active,
+.ui-grid-pager-panel button.disabled.active,
+.ui-grid-pager-panel button[disabled].active,
+fieldset[disabled] .ui-grid-pager-panel button.active {
+  background-color: #fcfdfd;
+  border-color: #dee5e7;
+}
+
+.ui-grid-pager-panel button.btn-bg {
+  border-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+}
+
+/* ui-grid end */

@@ -7,40 +7,41 @@
      <md-button class="text-u-c md-raised text-black p-r"><i class="i-20 mdi2-content-add p-r-xs p-l-xs"></i>Column</md-button>
 
      <md-menu>
-     <md-button aria-label="Open phone interactions menu" class="text-u-c md-raised text-black" ng-click="openMenu($mdOpenMenu, $event)">
-     more options <i class="i-24 mdi2-navigation-arrow-drop-down"></i>
-   </md-button>
-   <md-menu-content width="4">
-   <md-menu-item>
-   <md-button ng-click="ctrl.redial($event)">
-   Redial
- </md-button>
-</md-menu-item>
-<md-menu-item>
-<md-button ng-click="ctrl.checkVoicemail()">
-Check voicemail
-</md-button>
-</md-menu-item>
-<md-menu-divider></md-menu-divider>
-<md-menu-item>
-<md-button ng-click="ctrl.toggleNotifications()">
-{{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
-</md-button>
-</md-menu-item>
-</md-menu-content>
-</md-menu>
-
-</div>
-</div>
-<div class="wrapper-md bg-white" ng-controller="UiGridDemoCtrl">
-  <h4>Basic Example</h4>
-  <div class="table-responsive m-b-lg">
-    <div ui-grid="gridOptionsSimple"></div>
+       <md-button aria-label="Open phone interactions menu" class="text-u-c md-raised text-black p-l" ng-click="openMenu($mdOpenMenu, $event)">
+          more options 
+         <i class="i-24 mdi2-navigation-arrow-drop-down"></i>
+       </md-button>
+        <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="ctrl.redial($event)">
+          Redial
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="ctrl.checkVoicemail()">
+            Check voicemail
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="ctrl.toggleNotifications()">
+              {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
   </div>
 
-  <h4>Complex Example</h4>
-  <div class="table-responsive">
-   <div ui-grid="gridOptionsComplex" ui-grid-edit ui-grid-resize-columns ></div>
- </div>
-</div>
+  <div class="wrapper-md bg-white" ng-controller="UiGridDemoCtrl">
+    <h4>Basic Example</h4>
+    <div class="table-responsive m-b-lg">
+      <div ui-grid="gridOptionsSimple"></div>
+    </div>
+
+    <h4>Complex Example</h4>
+    <div class="table-responsive">
+     <div ui-grid="gridOptionsComplex" ui-grid-edit ui-grid-resize-columns ></div>
+   </div>
+  </div>
 </div>

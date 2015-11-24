@@ -45,7 +45,7 @@ angular.module('app')
               .state('app.users', {
                   url: '/users',
                   templateUrl: 'tpl/app/users.html',
-                  resolve: load(['js/controllers/app/users.js']),
+                  resolve: load(['ui.grid', 'js/controllers/app/users.js', 'js/controllers/uigrid.js']),
                   controller: 'UsersCtrl',
                   headerName: 'Users'
               })

@@ -65,7 +65,7 @@ angular.module('app')
           files: [
               '/libs/angular/angular-ui-grid/ui-grid.min.js',
               '/libs/angular/angular-ui-grid/ui-grid.min.css',
-              '/libs/angular/angular-ui-grid/ui-grid.bootstrap.css'
+          //    '/libs/angular/angular-ui-grid/ui-grid.bootstrap.css'
           ]
       },
       {
