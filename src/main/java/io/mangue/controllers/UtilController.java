@@ -1,5 +1,6 @@
 package io.mangue.controllers;
 
+import io.mangue.messaging.MessageExecutorProxy;
 import io.mangue.models.App;
 import io.mangue.models.User;
 import io.mangue.repositories.AppRepository;
@@ -38,6 +39,8 @@ public class UtilController {
 //    private UriInfo uriInfo;
 
     @Autowired private RedisTemplate< String, Object > template;
+
+    @Autowired private MessageExecutorProxy mProxy;
 
     @Autowired
     @Qualifier("sessionRegistry")
@@ -92,6 +95,7 @@ public class UtilController {
 
     @RequestMapping("/asyncTest")
     public String asyncTest(){
+        mProxy.proxy("UpdateCache", "test");
         asyncService.asyncTest();
         return "ok";
     }

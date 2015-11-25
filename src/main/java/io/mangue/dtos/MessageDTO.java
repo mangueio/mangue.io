@@ -8,6 +8,17 @@ import java.io.Serializable;
 public class MessageDTO implements Serializable{
 
     public MessageDTO(){}
-    public MessageDTO(String message){this.message = message;}
-    public String message;
+    public MessageDTO(String header){this.header = header;}
+    public MessageDTO(String header, Object payload){this.header = header; this.payload = payload;}
+    public MessageDTO(String header, String executor, Object payload){this.header = header; this.executor = executor; this.payload = payload;}
+    public String header;
+    public String executor;
+    public Object payload;
+
+    @Override
+    public String toString() {
+        if(header != null)
+            return header.toString();
+        return super.toString();
+    }
 }

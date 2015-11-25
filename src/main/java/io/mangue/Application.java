@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
@@ -19,6 +20,7 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 @EnableAsync
 @EnableMongoAuditing
+@EnableScheduling
 public class Application implements AsyncConfigurer{
 
     @Value("${async.corePoolSize:5}")

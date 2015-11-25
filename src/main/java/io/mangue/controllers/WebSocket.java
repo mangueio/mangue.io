@@ -11,6 +11,6 @@ import org.springframework.stereotype.Controller;
 public class WebSocket {
     @MessageMapping("/ws")
     public MessageDTO pipe(MessageDTO message) throws Exception {
-        return new MessageDTO("Hello, " + message.message + "!");
+        return new MessageDTO("Hello, " + message.header + "!");
     }
 }

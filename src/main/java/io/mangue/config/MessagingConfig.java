@@ -11,6 +11,8 @@ import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.Topic;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
@@ -22,7 +24,12 @@ public class MessagingConfig {
     // -------- redis application level message bus
     @Bean
     public MessageListenerAdapter messageListener() {
-        return new MessageListenerAdapter( new ApplicationMessageListener() );
+        return new MessageListenerAdapter( applicationMessageListener() );
+    }
+
+    @Bean
+    public ApplicationMessageListener applicationMessageListener(){
+        return new ApplicationMessageListener();
     }
 
     @Bean
@@ -50,6 +57,9 @@ public class MessagingConfig {
     @Bean
     public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory jcf) throws Exception {
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+        redisTemplate.setKeySerializer( new StringRedisSerializer() );
+        redisTemplate.setHashValueSerializer( new GenericToStringSerializer<Object>( Object.class ) );
+        redisTemplate.setValueSerializer( new GenericToStringSerializer<Object>( Object.class ) );
         redisTemplate.setConnectionFactory(jcf);
         return redisTemplate;
     }
