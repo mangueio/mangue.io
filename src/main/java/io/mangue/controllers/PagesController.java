@@ -29,6 +29,9 @@ public class PagesController {
     @RequestMapping(value = "/app/**", method = RequestMethod.GET)
     public String app() { return home(); }
 
+    @RequestMapping(value = "/access/**", method = RequestMethod.GET)
+    public String access() { return home(); }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() { return home(); }
 

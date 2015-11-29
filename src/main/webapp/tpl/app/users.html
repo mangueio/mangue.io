@@ -1,5 +1,5 @@
 <div class="hbox bg-white">
-  <div class="b-b wrapper-sm">
+  <div class="wrapper-sm">
     <!-- <h1 class="m-n font-thin h3">uiGrid</h1> -->
     <div>
      <md-button class="md-fab md-raised md-mini" aria-label="Mini FAB"><i class="i-24 mdi mdi-account-plus"></i></md-button>
@@ -33,15 +33,13 @@
     </div>
   </div>
 
-  <div class="wrapper-md bg-white" ng-controller="UiGridDemoCtrl">
-    <h4>Basic Example</h4>
-    <div class="table-responsive m-b-lg">
-      <div ui-grid="gridOptionsSimple"></div>
-    </div>
-
-    <h4>Complex Example</h4>
-    <div class="table-responsive">
-     <div ui-grid="gridOptionsComplex" ui-grid-edit ui-grid-resize-columns ></div>
-   </div>
+  <div class="bg-white pos-abt" style="height: auto;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;">
+    <!-- <div class="table-responsive m-b-lg"> -->
+      <div ui-grid="gridOptions" external-scopes="externalFuncions" ui-grid-paging ui-grid-cellNav ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection class="table-wrapper"></div>
+    <!-- </div> -->
   </div>
 </div>

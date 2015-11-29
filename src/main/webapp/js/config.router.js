@@ -45,7 +45,17 @@ angular.module('app')
               .state('app.users', {
                   url: '/users',
                   templateUrl: 'tpl/app/users.html',
-                  resolve: load(['ui.grid', 'js/controllers/app/users.js', 'js/controllers/uigrid.js']),
+                  resolve: load([
+                    'ui.grid', 
+                    'ui.grid.edit',
+                    'ui.grid.rowEdit',
+                    'ui.grid.pagination',
+                    'ui.grid.cellNav',
+                    'ui.grid.resizeColumns',
+                    'ui.grid.autoResize',
+                    'ui.grid.selection',
+                    'ui.grid.moveColumns',
+                    'js/controllers/app/users.js', 'js/controllers/uigrid.js']),
                   controller: 'UsersCtrl',
                   headerName: 'Users'
               })
@@ -265,12 +275,12 @@ angular.module('app')
               })
               .state('access.signin', {
                   url: '/signin',
-                  templateUrl: 'tpl/page_signin.html',
+                  templateUrl: 'tpl/app/signin.html',
                   resolve: load( ['js/controllers/signin.js'] )
               })
               .state('access.signup', {
                   url: '/signup',
-                  templateUrl: 'tpl/page_signup.html',
+                  templateUrl: 'tpl/app/signup.html',
                   resolve: load( ['js/controllers/signup.js'] )
               })
               .state('access.forgotpwd', {

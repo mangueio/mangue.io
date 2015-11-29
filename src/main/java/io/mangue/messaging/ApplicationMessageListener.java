@@ -1,7 +1,6 @@
 package io.mangue.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.mangue.config.Logger;
 import io.mangue.dtos.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

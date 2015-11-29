@@ -1,5 +1,10 @@
 // lazyload config
 
+var gridFiles = [
+  '/libs/angular/angular-ui-grid/ui-grid.min.js',
+  '/libs/angular/angular-ui-grid/ui-grid.min.css',
+];
+
 angular.module('app')
     /**
    * jQuery plugin config use ui-jq directive , config the js and css files that required
@@ -61,12 +66,31 @@ angular.module('app')
           ]
       },
       {
-          name: 'ui.grid',
-          files: [
-              '/libs/angular/angular-ui-grid/ui-grid.min.js',
-              '/libs/angular/angular-ui-grid/ui-grid.min.css',
-          //    '/libs/angular/angular-ui-grid/ui-grid.bootstrap.css'
-          ]
+        name: 'ui.grid', files: gridFiles
+      },
+      {
+        name: 'ui.grid.edit', files: gridFiles
+      },
+      {
+        name: 'ui.grid.rowEdit', files: gridFiles
+      },
+      {
+        name: 'ui.grid.pagination', files: gridFiles
+      },
+      {
+        name: 'ui.grid.cellNav', files: gridFiles
+      },
+      {
+        name: 'ui.grid.resizeColumns', files: gridFiles
+      },
+      {
+        name: 'ui.grid.autoResize', files: gridFiles
+      },
+      {
+        name: 'ui.grid.selection', files: gridFiles
+      },
+      {
+        name: 'ui.grid.moveColumns', files: gridFiles
       },
       {
           name: 'ui.select',
