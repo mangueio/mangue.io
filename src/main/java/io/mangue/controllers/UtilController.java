@@ -1,5 +1,6 @@
 package io.mangue.controllers;
 
+import io.mangue.aspect.annotations.Profile;
 import io.mangue.messaging.MessageExecutorProxy;
 import io.mangue.models.App;
 import io.mangue.models.User;
@@ -62,7 +63,8 @@ public class UtilController {
     @Autowired
     private InfoEndpoint infoEndpoint;
 
-    @RequestMapping(value = "/checkUser",
+    @Profile
+        @RequestMapping(value = "/checkUser",
             produces = MediaType.APPLICATION_JSON,
             method = RequestMethod.GET)
     public User getUser() {

@@ -6963,6 +6963,20 @@ a.text-#000000:hover {
   }
 }
 
+/* override */
+
+.app-header .animated,
+.app-aside .animated {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+}
+
+/* /override */
+
+/*  */
+
+/* util */
+
 .i-16 {
   font-size: 16px;
   vertical-align: -15%;
@@ -7275,6 +7289,9 @@ a.text-#000000:hover {
   border-top: 0;
 }
 
+/* /util */
+/* ui-grid */
+
 .ui-grid {
   position: absolute;
   top: 0;
@@ -7283,8 +7300,6 @@ a.text-#000000:hover {
   left: 0;
   height: auto;
 }
-
-/* ui-grid */
 
 /* .table-wrapper{position: absolute; bottom: 0; top: 65px; width: 100%; background:#f9fafb} */
 
