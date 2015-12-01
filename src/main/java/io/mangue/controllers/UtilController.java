@@ -1,5 +1,6 @@
 package io.mangue.controllers;
 
+import com.datastax.driver.core.Session;
 import io.mangue.aspect.annotations.Profile;
 import io.mangue.messaging.MessageExecutorProxy;
 import io.mangue.models.App;
@@ -7,6 +8,7 @@ import io.mangue.models.User;
 import io.mangue.repositories.AppRepository;
 import io.mangue.services.AsyncService;
 import io.mangue.services.UtilService;
+import io.mangue.util.ContentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.InfoEndpoint;
@@ -61,6 +63,9 @@ public class UtilController {
     private Topic topic;
 
     @Autowired
+    private Session cassandra;
+
+    @Autowired
     private InfoEndpoint infoEndpoint;
 
     @Profile
@@ -80,7 +85,7 @@ public class UtilController {
         return (User)object;
     }
 
-    @RequestMapping("/topic")
+    @RequestMapping(value = "/topic", produces = MediaType.TEXT_PLAIN)
     public String getTopic(){
         Assert.isTrue(topic != null && "pubsub:application".equals(topic.getTopic()));
         return topic.getTopic();
@@ -95,14 +100,14 @@ public class UtilController {
         return app;
     }
 
-    @RequestMapping("/asyncTest")
+    @RequestMapping(value = "/asyncTest", produces = MediaType.TEXT_PLAIN)
     public String asyncTest(){
         mProxy.proxy("UpdateCache", "test");
         asyncService.asyncTest();
         return "ok";
     }
 
-    @RequestMapping(value = "/testRedisTemplate", method = RequestMethod.GET)
+    @RequestMapping(value = "/testRedisTemplate", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     public String  testRedisTemplate(){
         String random = UUID.randomUUID().toString();
         template.opsForValue().set(random , "val" );

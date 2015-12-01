@@ -276,12 +276,14 @@ angular.module('app')
               .state('access.signin', {
                   url: '/signin',
                   templateUrl: 'tpl/app/signin.html',
-                  resolve: load( ['js/controllers/signin.js'] )
+                  resolve: load( ['js/controllers/app/users.js']),
+                  controller: 'UserAuthCtrl'
               })
               .state('access.signup', {
                   url: '/signup',
                   templateUrl: 'tpl/app/signup.html',
-                  resolve: load( ['js/controllers/signup.js'] )
+                  resolve: load(['js/controllers/app/users.js']),
+                  controller: 'UserAuthCtrl'
               })
               .state('access.forgotpwd', {
                   url: '/forgotpwd',

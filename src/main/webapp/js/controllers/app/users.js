@@ -2,41 +2,93 @@
 
 /* Controllers */
 
+  app.controller('UserAuthCtrl', ['$scope', '$http', function($scope, $http){
+    $scope.user = {};
+    $scope.authError = null;
+    $scope.signup = function() {
+      $scope.authError = null;
+      // Try to create
+      $http.post('/signup', {name: $scope.user.name, email: $scope.user.email, password: $scope.user.password})
+      .then(function(response) {
+        if ( !response.data.user ) {
+          $scope.authError = response;
+        }else{
+          $state.go('app.dashboard-v1');
+        }
+      }, function(x) {
+        $scope.authError = 'Server Error';
+      });
+    };
+
+    $scope.user = {};
+
+    $scope.login = function() {
+      $scope.authError = null;
+      // Try to login
+      $http.post('/login', $.param({'username': $scope.user.username, 'password': $scope.user.password}), {"headers": {"Content-Type": "application/x-www-form-urlencoded"}})
+      .then(function(response) {
+        if ( !response.data.user ) {
+          $scope.authError = 'Email or Password not right';
+        }else{
+          $state.go('app.dashboard-v1');
+        }
+      }, function(x) {
+        $scope.authError = 'Server Error';
+      });
+    };
+  }])
+
   // bootstrap controller
-  app.controller('UsersCtrl', ['$scope', '$localStorage', '$mdDialog', function($scope, $localStorage, $mdDialog) {
+  app.controller('UsersCtrl', ['$scope', '$localStorage', '$mdDialog', '$http', function($scope, $localStorage, $mdDialog, $http) {
   	var originatorEv;
   	$scope.openMenu = function($mdOpenMenu, ev) {
-  		originatorEv = ev;
-  		$mdOpenMenu(ev);
-  	};
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
 
-  	$scope.$watch('collections', function(newVal, oldVal){
-    if(newVal)//
-    	collectionsLoaded();
-})
+    $http.get('/util/checkUser', function(response){
 
-  	$scope.filterOptions = {
-  		filterText: "",
-  		useExternalFilter: true
-  	}; 
-  	$scope.totalServerItems = 0;
-  	$scope.pagingOptions = {
-  		pageSizes: [30, 50, 100],
-  		pageSize: 50,
-  		currentPage: 1
-  	};  
-  	$scope.setPagingData = function(data, page, pageSize){  
-  		var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
-  		$scope.pageData = pagedData;
-  		$scope.totalServerItems = data.length;
-  		if (!$scope.$$phase) {
-  			$scope.$apply();
-  		}
-  	};
-  	$scope.getPagedDataAsync = function (pageSize, page, searchText) {
-  		setTimeout(function () {
-  			var data;
-  			if (searchText) {
+    })
+
+    $http.get('/util/topic', function(response){
+
+    })
+
+    $http.get('/util/asyncTest', function(response){
+
+    })
+
+    $http.get('/util/testRedisTemplate', function(response){
+
+    })
+
+    $scope.$watch('collections', function(newVal, oldVal){
+      if(newVal)
+       collectionsLoaded();
+    })
+
+    $scope.filterOptions = {
+      filterText: "",
+      useExternalFilter: true
+    }; 
+    $scope.totalServerItems = 0;
+    $scope.pagingOptions = {
+      pageSizes: [30, 50, 100],
+      pageSize: 50,
+      currentPage: 1
+    };  
+    $scope.setPagingData = function(data, page, pageSize){  
+      var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+      $scope.pageData = pagedData;
+      $scope.totalServerItems = data.length;
+      if (!$scope.$$phase) {
+       $scope.$apply();
+     }
+   };
+   $scope.getPagedDataAsync = function (pageSize, page, searchText) {
+    setTimeout(function () {
+     var data;
+     if (searchText) {
               // var ft = searchText.toLowerCase();
               // $http.get('js/modules/ng-grid/largeLoad.json').success(function (largeLoad) {    
               //     data = largeLoad.filter(function(item) {
@@ -44,19 +96,19 @@
               //     });
               //     $scope.setPagingData(data,page,pageSize);
               // }); 
-  	} else {
+  } else {
               // $http.get('js/modules/ng-grid/largeLoad.json').success(function (largeLoad) {
               //     $scope.setPagingData(largeLoad,page,pageSize);
               // });
-  		PulseHub.getAppData(app.id, currentCollection.name, "", 1, Math.pow(2, 30), "_id,desc").success(function(response){
+    PulseHub.getAppData(app.id, currentCollection.name, "", 1, Math.pow(2, 30), "_id,desc").success(function(response){
                 //console.log($scope.data);
                 $scope.data = response;
                 $scope.setPagingData($scope.data,page,pageSize);
-            }).finally(function(){
-            	$scope.app.loading = false;
-            })
-        }
-    }, 100);
+              }).finally(function(){
+               $scope.app.loading = false;
+             })
+            }
+          }, 100);
 };
 
 $scope.$watch('pagingOptions', function (newVal, oldVal) {
@@ -221,23 +273,23 @@ $scope.gridOptions = {
       field: 'updatedAt',
       enableCellEdit: false,
       cellFilter: "date:'yyyy-MM-ddTHH:mm:ss.sss'"*/
-  }]
-};
+    }]
+  };
 
 
-	$scope.columns = $scope.gridOptions.columnDefs
+  $scope.columns = $scope.gridOptions.columnDefs
 
   var collectionLoaded = function(){
     currentCollection && currentCollection.columns && currentCollection.columns.forEach(function(column, index){
-        $scope.gridOptions.columnDefs.push({
+      $scope.gridOptions.columnDefs.push({
         field: column,
         displayName: column,
         cellTemplate:
         '<div class="ui-grid-cell-contents">'+
-          '<button ng-click="getExternalScopes().openDocumentEditor(col.field, row.entity[col.field], row.entity)" class="code-editor-btn btn btn-dark no-borders no-radius btn-xs text-md btn-default">'+
-          '<i class="fa-code fa fa-fw"></i>'+
-          '</button>'+
-          '<div class="ui-grid-wrapped-data">{{row.entity[col.field]}}</div>'+
+        '<button ng-click="getExternalScopes().openDocumentEditor(col.field, row.entity[col.field], row.entity)" class="code-editor-btn btn btn-dark no-borders no-radius btn-xs text-md btn-default">'+
+        '<i class="fa-code fa fa-fw"></i>'+
+        '</button>'+
+        '<div class="ui-grid-wrapped-data">{{row.entity[col.field]}}</div>'+
         '</div>',
         width: 150, menuItems: [{
           title: 'Delete column',
@@ -272,15 +324,15 @@ $scope.gridOptions = {
     if(column)
       PulseHub.postAppCollectionColumn(app.id, currentCollection.name, column).success(function(){
         if($scope.gridOptions && $scope.gridOptions.columnDefs){
-            $scope.gridOptions.columnDefs.push({
+          $scope.gridOptions.columnDefs.push({
             field: column,
             displayName: column,
             cellTemplate:
             '<div class="ui-grid-cell-contents">'+
-              '<button ng-click="getExternalScopes().openDocumentEditor(col.field, row.entity[col.field], row.entity)" class="code-editor-btn btn btn-dark no-borders no-radius btn-xs text-md btn-default">'+
-              '<i class="fa-code fa fa-fw"></i>'+
-              '</button>'+
-              '<div class="ui-grid-wrapped-data">{{row.entity[col.field]}}</div>'+
+            '<button ng-click="getExternalScopes().openDocumentEditor(col.field, row.entity[col.field], row.entity)" class="code-editor-btn btn btn-dark no-borders no-radius btn-xs text-md btn-default">'+
+            '<i class="fa-code fa fa-fw"></i>'+
+            '</button>'+
+            '<div class="ui-grid-wrapped-data">{{row.entity[col.field]}}</div>'+
             '</div>',
             width: 150, menuItems: [{
               title: 'Delete column',
@@ -297,28 +349,28 @@ $scope.gridOptions = {
       }).error(function(){
         toastr.error("Error adding column.");
       }).finally(function(){$scope.cancelModal();})
-  }
+    }
 
-  $scope.deleteCollectionColumn = function(){
-    var columnName = $scope.modalObject;
-    PulseHub.deleteAppCollectionColumn(app.id, currentCollection.name, columnName).success(function(){
-      for (var i = $scope.gridOptions.columnDefs.length - 1; i >= 0; i--) {
-        if($scope.gridOptions.columnDefs[i].field === columnName)
-          $scope.gridOptions.columnDefs.splice(i, 1);
-      };
-      toastr.success("Column has been removed.");
-      $scope.getCollections();
-    }).error(function(){toastr.error("Error deleting column.");})
-    .finally(function(){$scope.cancelModal();})
-  }
+    $scope.deleteCollectionColumn = function(){
+      var columnName = $scope.modalObject;
+      PulseHub.deleteAppCollectionColumn(app.id, currentCollection.name, columnName).success(function(){
+        for (var i = $scope.gridOptions.columnDefs.length - 1; i >= 0; i--) {
+          if($scope.gridOptions.columnDefs[i].field === columnName)
+            $scope.gridOptions.columnDefs.splice(i, 1);
+        };
+        toastr.success("Column has been removed.");
+        $scope.getCollections();
+      }).error(function(){toastr.error("Error deleting column.");})
+      .finally(function(){$scope.cancelModal();})
+    }
 
-  if(app.collectionColumns != null && app.collectionColumns.length){
-    app.collectionColumns.forEach(function(column, index){
-      $scope.gridOptions.columnDefs.push({field: column, width: 150});
-    });
-  }
+    if(app.collectionColumns != null && app.collectionColumns.length){
+      app.collectionColumns.forEach(function(column, index){
+        $scope.gridOptions.columnDefs.push({field: column, width: 150});
+      });
+    }
 
-  $scope.gridOptions.onRegisterApi = function(gridApi){
+    $scope.gridOptions.onRegisterApi = function(gridApi){
     //set gridApi on scope
     $scope.gridApi = gridApi;
     gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
@@ -397,7 +449,7 @@ $scope.gridOptions = {
       });
     }
   }; 
- 
+
   $scope.gridOptions.onRegisterApi = function(gridApi){
     //set gridApi on scope
     // console.log(gridApi);
@@ -443,7 +495,7 @@ $scope.gridOptions = {
 
   $scope.externalFuncions = {}
   $scope.externalFuncions.openDocumentEditor = function(fieldName, fieldData, rowEntity){
-  $scope.editorValue = null;
+    $scope.editorValue = null;
     $scope.openCodeModal('document_editor.html', 'lg')
     $interval(function(){
       $scope.editorValue = JSON.stringify(fieldData, null, 2);
@@ -601,7 +653,7 @@ $scope.gridOptions = {
   $scope.openCodeModal = function(templateId, size, object){
     $scope.modalObject = object;
     $scope.modalInstance = $modal.open({
-        windowClass: "modal fade in",
+      windowClass: "modal fade in",
         templateUrl: templateId, // the id of the <script> template
         size: size,
         scope: $scope, // pass the current scope. no need for a new controller

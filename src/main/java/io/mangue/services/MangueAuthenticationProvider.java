@@ -1,21 +1,18 @@
 package io.mangue.services;
 
-import io.mangue.models.App;
 import io.mangue.models.User;
 import io.mangue.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;  
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;  
-import org.springframework.security.core.AuthenticationException;  
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.core.Context;
+import javax.ws.rs.BadRequestException;
 
 @Service
 public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
@@ -46,8 +43,14 @@ public class MangueAuthenticationProvider extends AbstractUserDetailsAuthenticat
 //            throw new BadCredentialsException("User does not belong to app");
 
         if (user == null) {
-            throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
+            //throw new InternalAuthenticationServiceException("UserDetailsService returned null, which is an interface contract violation");
+            throw new InternalAuthenticationServiceException("No user found");
         }
+
+        if(user != null && user.password != null && !user.password.equals(authentication.getCredentials().toString())){
+            throw new AuthenticationServiceException("Wrong credentials");
+        }
+
         return user;
     }
 }
