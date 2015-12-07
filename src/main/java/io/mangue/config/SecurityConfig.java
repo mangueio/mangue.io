@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 //import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
 @Configuration
@@ -35,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/libs/**", "/tpl/**", "/l10n/**", "/img/**", "/images/**", "/fonts/**");
+        web.ignoring().antMatchers("/favicon.ico", "/js/**", "/css/**", "/libs/**", "/tpl/**", "/l10n/**", "/img/**", "/images/**", "/fonts/**");
     }
 
     @Bean
@@ -48,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 http//.formLogin().and() // .formLogin()// .defaultSuccessUrl("/resource").and()
                 //.logout().and()
                 .authorizeRequests()
-                .antMatchers("/", "/app/**", "/access/**", "/index.html", "/home", "/login", "/data", "/data/**", "/logout", "/util/**").permitAll()
+//                .antMatchers("/", "/app/**", "/access/**", "/index.html", "/home", "/login", "/data", "/data/**", "/logout", "/util/**").permitAll()
                 .antMatchers("/admin/api/**").hasAnyAuthority("ADMIN", "SUPERUSER")
                 .antMatchers("/api/**").hasAnyAuthority("USER", "ADMIN", "SUPERUSER")
                 .antMatchers("/**").permitAll()
@@ -73,11 +72,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SimpleUrlAuthenticationFailureHandler authFailureHandler(){
         return new SimpleUrlAuthenticationFailureHandler();
-    }
-
-    @Bean
-    public SimpleUrlAuthenticationSuccessHandler authSuccessHandler(){
-        return new SimpleUrlAuthenticationSuccessHandler();
     }
 
     @Autowired

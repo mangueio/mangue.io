@@ -15,15 +15,9 @@ angular.module('app')
   .config(
     [          '$stateProvider', '$urlRouterProvider', 'JQ_CONFIG', 'MODULE_CONFIG', '$locationProvider',
       function ($stateProvider,   $urlRouterProvider, JQ_CONFIG, MODULE_CONFIG, $locationProvider) {
+          
           var layout = "tpl/app.html";
-          if(window.location.href.indexOf("material") > 0){
-            layout = "tpl/blocks/material.layout.html";
-            $urlRouterProvider
-              .otherwise('/app/dashboard-v3');
-          }else{
-            $urlRouterProvider
-              .otherwise('/app/dashboard');
-          }
+          $urlRouterProvider.otherwise('/');
 
           $locationProvider.html5Mode({
               enabled: true,
@@ -32,12 +26,16 @@ angular.module('app')
           $stateProvider
               .state('app', {
                   abstract: true,
-                  url: '/app',
+                  url: '',
                   templateUrl: layout,
                   resolve: load(['AngularStompDK'])
               })
+              .state('apps', {
+                  url: '/apps',
+                  templateUrl: 'tpl/app/apps.html'
+              })
               .state('app.dashboard', {
-                  url: '/dashboard',
+                  url: '/',
                   templateUrl: 'tpl/app/dashboard.html',
                   resolve: load(['js/controllers/chart.js']),
                   headerName: 'Dashboard'
@@ -363,39 +361,39 @@ angular.module('app')
                   },
                   resolve: load( ['js/controllers/tab.js'] )
               })
-              .state('apps', {
-                  abstract: true,
-                  url: '/apps',
-                  templateUrl: 'tpl/layout.html'
-              })
-              .state('apps.note', {
-                  url: '/note',
-                  templateUrl: 'tpl/apps_note.html',
-                  resolve: load( ['js/app/note/note.js','moment'] )
-              })
-              .state('apps.contact', {
-                  url: '/contact',
-                  templateUrl: 'tpl/apps_contact.html',
-                  resolve: load( ['js/app/contact/contact.js'] )
-              })
-              .state('app.weather', {
-                  url: '/weather',
-                  templateUrl: 'tpl/apps_weather.html',
-                  resolve: load(['js/app/weather/skycons.js','angular-skycons','js/app/weather/ctrl.js','moment'])
-              })
-              .state('app.todo', {
-                  url: '/todo',
-                  templateUrl: 'tpl/apps_todo.html',
-                  resolve: load(['js/app/todo/todo.js', 'moment'])
-              })
-              .state('app.todo.list', {
-                  url: '/{fold}'
-              })
-              .state('app.note', {
-                  url: '/note',
-                  templateUrl: 'tpl/apps_note_material.html',
-                  resolve: load(['js/app/note/note.js', 'moment'])
-              })
+              // .state('apps', {
+              //     abstract: true,
+              //     url: '/apps',
+              //     templateUrl: 'tpl/layout.html'
+              // })
+              // .state('apps.note', {
+              //     url: '/note',
+              //     templateUrl: 'tpl/apps_note.html',
+              //     resolve: load( ['js/app/note/note.js','moment'] )
+              // })
+              // .state('apps.contact', {
+              //     url: '/contact',
+              //     templateUrl: 'tpl/apps_contact.html',
+              //     resolve: load( ['js/app/contact/contact.js'] )
+              // })
+              // .state('app.weather', {
+              //     url: '/weather',
+              //     templateUrl: 'tpl/apps_weather.html',
+              //     resolve: load(['js/app/weather/skycons.js','angular-skycons','js/app/weather/ctrl.js','moment'])
+              // })
+              // .state('app.todo', {
+              //     url: '/todo',
+              //     templateUrl: 'tpl/apps_todo.html',
+              //     resolve: load(['js/app/todo/todo.js', 'moment'])
+              // })
+              // .state('app.todo.list', {
+              //     url: '/{fold}'
+              // })
+              // .state('app.note', {
+              //     url: '/note',
+              //     templateUrl: 'tpl/apps_note_material.html',
+              //     resolve: load(['js/app/note/note.js', 'moment'])
+              // })
               .state('music', {
                   url: '/music',
                   templateUrl: 'tpl/music.html',

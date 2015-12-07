@@ -20,6 +20,8 @@ public class App {
 
     public String subdomain;
 
+    public String uniqueSimpleHash;
+
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     public Date createdAt;

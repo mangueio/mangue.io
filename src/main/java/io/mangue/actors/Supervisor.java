@@ -25,7 +25,7 @@ import java.util.List;
 @Scope("prototype")
 public class Supervisor extends UntypedActor {
 
-    private final LoggingAdapter log = Logging.getLogger(getContext().system(), "Supervisor");
+    private final LoggingAdapter logger = Logging.getLogger(getContext().system(), "Supervisor");
 
     @Autowired
     private SpringExtension springExtension;
@@ -35,7 +35,7 @@ public class Supervisor extends UntypedActor {
     @Override
     public void preStart() throws Exception {
 
-        log.info("Starting up");
+        logger.info("Starting up");
 
         List<Routee> routees = new ArrayList<Routee>();
         for (int i = 0; i < 100; i++) {
@@ -66,7 +66,7 @@ public class Supervisor extends UntypedActor {
 
     @Override
     public void postStop() throws Exception {
-        log.info("Shutting down");
+        logger.info("Shutting down");
         super.postStop();
     }
 }

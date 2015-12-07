@@ -77,4 +77,14 @@ public class UtilService {
         return null;
         //		return "192.168.181.1";
     }
+
+    @Value("${mangue.domain:'mangue.com}") // mangue.com is used for development in local proxy server.
+    private String domain; // top level domain set in application.properties
+
+    public String getSubdomainFromHost(String host) {
+        String subdomain = host.replaceAll("\\." + domain,"");
+        if(subdomain == null || subdomain.isEmpty() || subdomain.equals(host))
+            return null;
+        return subdomain;
+    }
 }

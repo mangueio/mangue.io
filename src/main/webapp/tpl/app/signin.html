@@ -17,20 +17,24 @@
         Sign in with your {{app.name}} Account
       </div>
       <form name="form" ng-submit="login()">
-        <div class="md-form-group float-label">
+        <!-- <div class="md-form-group float-label">
           <input type="text" class="md-input" ng-model="user.username" required>
           <label>Username</label>
-        </div>
-        <div class="md-form-group float-label">
-          <input type="password" class="md-input" ng-model="user.password" required>
+        </div> -->
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="user.username" required>
+        </md-input-container>
+        <md-input-container>
           <label>Password</label>
-        </div>      
+          <input type="password" ng-model="user.password" required>
+        </md-input-container>
         <div class="m-b-md">        
           <label class="md-check">
             <input type="checkbox"><i class="indigo"></i> Keep me signed in
           </label>
         </div>
-        <button md-ink-ripple type="submit" class="md-btn md-raised pink btn-block p-h-md">Sign in</button>
+        <md-button md-ink-ripple type="submit" class="md-raised md-accent btn-block p-h-md">Sign in</md-button>
       </form>
     </div>
 
