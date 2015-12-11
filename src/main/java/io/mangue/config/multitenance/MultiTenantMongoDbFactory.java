@@ -11,7 +11,7 @@ public class MultiTenantMongoDbFactory extends SimpleMongoDbFactory {
 
     public MultiTenantMongoDbFactory(MongoClient mongo, String database) {
         super(mongo, database);
-        database = defaultDatabaseName;
+        this.defaultDatabaseName = new String(database);
         Logger.debug("Instantiating " + MultiTenantMongoDbFactory.class.getName() + " with default database name: " + defaultDatabaseName);
     }
 

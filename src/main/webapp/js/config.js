@@ -2,9 +2,56 @@
 
 var app =  
 angular.module('app')
+  .constant('MANGUE', {
+    baseUrl: location.protocol + '//' + location.host,
+    //baseUrl: 'http://master.com',
+    pageSize: 100
+  })
   .config(
-    [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', 'cfpLoadingBarProvider',
-    function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide ,  cfpLoadingBarProvider) {
+    [        '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', 'cfpLoadingBarProvider', '$httpProvider', 'MANGUE',
+    function ($controllerProvider,   $compileProvider,   $filterProvider,   $provide ,  cfpLoadingBarProvider ,  $httpProvider ,  MANGUE) {
+
+        $httpProvider.defaults.useXDomain = true;
+        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.interceptors.push(function trix_httpInterceptor($q, $rootScope) {
+            var requestInterceptor = {
+                responseError: function(rejection){
+                    $rootScope.$broadcast('HTTP_ERROR',rejection);
+                    return $q.reject(rejection);
+                },
+                // optional method
+                response: function(response) {
+                // do something on success
+                if (MANGUE.baseUrl && response.config.method === "GET" &&
+                    (response.config.url.indexOf(MANGUE.baseUrl + "/api") > -1 || response.config.url.indexOf(MANGUE.baseUrl + "/data") > -1)  &&
+                    response.data && response.data._embedded){
+                    response.data = response.data._embedded;
+                return response
+            }else if (MANGUE.baseUrl && response.config.method === "GET" &&
+                (response.config.url.indexOf(MANGUE.baseUrl + "/api") > -1 || response.config.url.indexOf(MANGUE.baseUrl + "/data") > -1) > -1 &&
+                response.data && response.data.content){
+                response.data = response.data.content;
+                return response
+            }else if(response.config.method === "POST" || response.config.method === "PUT"){
+                var _value = response.headers("Location");
+                if (_value) {
+                    var _index = _value.lastIndexOf("/");
+                    var _suffix = _value.substring(_index + 1);
+                    var id = _suffix;
+                    response.data = id
+                }
+                return response;
+            }else
+            return response;
+        },
+        request: function(config) {
+          return config;
+        }
+        };
+        return requestInterceptor;
+    })
+
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
         
         // lazy controller, directive and service
         app.controller = $controllerProvider.register;

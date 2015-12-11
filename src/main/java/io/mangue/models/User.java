@@ -25,14 +25,12 @@ public class User implements UserDetails {
     @Id
     public String id;
     public String username;
+    public String name;
+
     @JsonIgnore
     public String password;
     public Boolean enabled = true;
     public Set<UserGrantedAuthority> authorities;
-    public String appId;
-
-    @Transient
-    public App app;
 
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.NUMBER)

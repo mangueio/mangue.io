@@ -23,6 +23,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -45,18 +46,16 @@ public class UtilController {
 
     @Autowired private MessageExecutorProxy mProxy;
 
+    @Autowired private AppRepository appRepository;
+
+    @Autowired private UtilService utilService;
+
     @Autowired
     @Qualifier("sessionRegistry")
     private SessionRegistry sessionRegistry;
 
     @Autowired
     private AsyncService asyncService;
-
-    @Autowired
-    private UtilService utilService;
-
-    @Autowired
-    private AppRepository appRepository;
 
     @Autowired
     @Qualifier("applicationChannel")
@@ -118,5 +117,17 @@ public class UtilController {
     @RequestMapping(value = "/getGit", method = RequestMethod.GET)
     public Map<String, Object> getGit(){
         return infoEndpoint.invoke();
+    }
+
+    @RequestMapping(value = "/getApps", method = RequestMethod.GET)
+    public List<App> getUserApp(){
+
+        User user = utilService.getUser();
+        if(user != null) {
+            List<App> apps = appRepository.findByUserIds(user.id);
+            return apps;
+        }
+
+        return new ArrayList<App>();
     }
 }

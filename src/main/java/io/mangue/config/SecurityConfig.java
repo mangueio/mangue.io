@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
                 .and()
                 .sessionManagement().maximumSessions(-1).sessionRegistry(sessionRegistry());
 

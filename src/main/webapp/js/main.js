@@ -77,7 +77,10 @@ angular.module('app')
       }
 
       $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-        window.console && console.log(fromState + " " + toState);
+        window.console && console.log(fromState,toState);
       });
+
+      /* get current session user or set to null if there's no user in session */
+      $scope.app.user = MANGUE_USER && MANGUE_USER.id ? MANGUE_USER : null;
 
   }]);

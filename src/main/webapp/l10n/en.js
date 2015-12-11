@@ -17,7 +17,9 @@
   "nav" : {
     "HEADER" : "Navigation",
     "DASHBOARD" : "Dashboard",
-    "DATA" : "Data",
+    "DATABASE" : "Database",
+    "DATASTORE": "Datastore",
+    "SEARCHENGINE": "Search Engine",
     "USERS": "Users",
     "CALENDAR" : "Calendar",
     "EMAIL" : "Email",

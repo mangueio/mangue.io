@@ -1,8 +1,11 @@
 package io.mangue.services;
 
 import io.mangue.models.App;
+import io.mangue.models.User;
 import io.mangue.util.ProfileType;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -14,6 +17,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
+import java.util.List;
 
 /**
  * Created by misael on 19/10/2015.
@@ -78,7 +82,7 @@ public class UtilService {
         //		return "192.168.181.1";
     }
 
-    @Value("${mangue.domain:'mangue.com}") // mangue.com is used for development in local proxy server.
+    @Value("${mangue.domain:'mangue.com'}") // mangue.com is used for development in local proxy server.
     private String domain; // top level domain set in application.properties
 
     public String getSubdomainFromHost(String host) {
@@ -86,5 +90,16 @@ public class UtilService {
         if(subdomain == null || subdomain.isEmpty() || subdomain.equals(host))
             return null;
         return subdomain;
+    }
+
+    public User getUser(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Object object = null;
+        if (auth != null)
+            object = auth.getPrincipal();
+
+        if(object instanceof User)
+            return (User) object;
+        return null;
     }
 }

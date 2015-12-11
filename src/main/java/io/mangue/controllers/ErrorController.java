@@ -40,6 +40,13 @@ public class ErrorController implements org.springframework.boot.autoconfigure.w
     @Autowired
     private ViewResolver viewResolver;
 
+    /**
+     * Check if reponse should be html or json or even if you need to redirect.
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = PATH)
     public ResponseEntity<String> error(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String ct = request.getContentType();
@@ -53,9 +60,10 @@ public class ErrorController implements org.springframework.boot.autoconfigure.w
         if((accept != null && !accept.isEmpty()) && containsHtml(accept)) {
 
             View view = null;
-            if(errors.status == HttpStatus.UNAUTHORIZED.value())
-                view = viewResolver.resolveViewName("unauthorized", null);
-            else
+            if(errors.status == HttpStatus.UNAUTHORIZED.value()) {
+                response.sendRedirect("/access/signin");
+                return null;
+            }else
                 view = viewResolver.resolveViewName("error", null);
 
             view.render(errors.errorAttributes, request, response);

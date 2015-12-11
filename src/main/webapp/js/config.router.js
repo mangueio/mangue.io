@@ -26,16 +26,18 @@ angular.module('app')
           $stateProvider
               .state('app', {
                   abstract: true,
-                  url: '',
+                  url: '/{subdomain}',
                   templateUrl: layout,
                   resolve: load(['AngularStompDK'])
               })
               .state('apps', {
                   url: '/apps',
-                  templateUrl: 'tpl/app/apps.html'
+                  templateUrl: 'tpl/app/apps.html',
+                  resolve: load(['js/controllers/app/apps.js']),
+                  controller: 'AppsCtrl'
               })
               .state('app.dashboard', {
-                  url: '/',
+                  url: '',
                   templateUrl: 'tpl/app/dashboard.html',
                   resolve: load(['js/controllers/chart.js']),
                   headerName: 'Dashboard'

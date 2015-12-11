@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by misael on 19/10/2015.
@@ -21,6 +22,8 @@ public class App {
     public String subdomain;
 
     public String uniqueSimpleHash;
+
+    public List<String> userIds;
 
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.NUMBER)

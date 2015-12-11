@@ -7,8 +7,8 @@
           <i class="glyphicon glyphicon-align-justify"></i>
         </button>
         <!-- brand -->
-        <a href="/" class="navbar-brand text-lt">
-          <i class="icomoon-crab i-24"></i>
+        <a ui-sref="apps" class="navbar-brand text-lt">
+          <i class="icomoon-crab i-30 v-middle"></i>
           <img src="img/logo.png" alt="." class="hide">
           <span class="hidden-folded m-l-xs">{{app.name}}</span>
         </a>
@@ -66,7 +66,7 @@
                 <img src="img/a0.jpg" alt="...">
                 <i class="on md b-white bottom"></i>
               </span>
-              <span class="hidden-sm hidden-md">John.Smith</span> <b class="caret"></b>
+              <span class="hidden-sm hidden-md">{{app.user.name}}</span> <b class="caret"></b>
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeIn w">

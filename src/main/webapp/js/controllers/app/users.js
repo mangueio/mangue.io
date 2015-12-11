@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-  app.controller('UserAuthCtrl', ['$scope', '$http', function($scope, $http){
+  app.controller('UserAuthCtrl', ['$scope', '$state', '$http', 'MANGUE', function($scope, $state, $http, MANGUE){
     $scope.user = {};
     $scope.authError = null;
     $scope.signup = function() {
@@ -13,7 +13,7 @@
         if ( !response.data.user ) {
           $scope.authError = response;
         }else{
-          $state.go('app.dashboard-v1');
+          $state.go('app.dashboard');
         }
       }, function(x) {
         $scope.authError = 'Server Error';
@@ -27,11 +27,10 @@
       // Try to login
       $http.post('/login', $.param({'username': $scope.user.username, 'password': $scope.user.password}), {"headers": {"Content-Type": "application/x-www-form-urlencoded"}})
       .then(function(response) {
-        if ( !response.data.user ) {
-          $scope.authError = 'Email or Password not right';
-        }else{
-          $state.go('app.dashboard-v1');
-        }
+        $http.get(MANGUE.baseUrl + '/users/current').success(function(user){
+          $scope.app.user = MANGUE_USER = user;
+          $state.go('apps');
+        });
       }, function(x) {
         $scope.authError = 'Server Error';
       });
