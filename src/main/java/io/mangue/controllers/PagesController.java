@@ -94,7 +94,9 @@ public class PagesController {
     public ModelAndView login() throws JsonProcessingException { return home(); }
 
     @PreAuthorize("hasAuthority('SUPERUSER') or hasAuthority('ADMIN')")
-    @RequestMapping(value = {"/{appSubdomain}/*"} , method = RequestMethod.GET)
+    @RequestMapping(value = {
+            "/{appSubdomain}/users"
+    } , method = RequestMethod.GET)
     @SubdomainMapping(SubdomainTypes.CONSOLE)
     public ModelAndView appPages(@PathVariable("appSubdomain") String appSubdomain) throws JsonProcessingException {
         return  home();

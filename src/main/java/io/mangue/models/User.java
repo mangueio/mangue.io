@@ -3,11 +3,8 @@ package io.mangue.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.joda.time.DateTime;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,11 +18,19 @@ import java.util.Set;
  */
 @JsonIgnoreProperties(value = {"accountNonExpired", "accountNonLocked", "credentialsNonExpired", "enabled"}) // remove UserDetails properties from json
 @Document
-public class User implements UserDetails {
-    @Id
-    public String id;
+public class User extends AbstractModel implements UserDetails{
+
     public String username;
     public String name;
+
+    public User(){
+        super();
+    }
+
+    public void nullafy(){
+        setAcl(null);
+        setPrincipal(null);
+    }
 
     @JsonIgnore
     public String password;
@@ -39,8 +44,6 @@ public class User implements UserDetails {
     @LastModifiedDate
     @JsonFormat(shape = JsonFormat.Shape.NUMBER)
     public Date updateAt;
-
-    public User(){}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
