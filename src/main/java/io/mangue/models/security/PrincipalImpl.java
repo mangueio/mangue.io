@@ -1,13 +1,16 @@
 package io.mangue.models.security;
 
+import java.io.Serializable;
 import java.security.Principal;
 
-public class PrincipalImpl implements Principal {
+public class PrincipalImpl implements Principal, Serializable {
     private String id;
 
     public String getId() {
         return id;
     }
+
+    public PrincipalImpl(){}
 
     public PrincipalImpl(String id) {
         this.id = id;

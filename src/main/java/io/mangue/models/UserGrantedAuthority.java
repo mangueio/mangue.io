@@ -6,8 +6,9 @@ public class UserGrantedAuthority implements GrantedAuthority {
 
 	public static final String USER_AUTHORITY = "USER";
 	public static final String ADMIN_AUTHORITY = "ADMIN";
+    public static final String SUPERUSER_AUTHORITY = "SUPERUSER";
 
-	String authority;
+    public String authority;
 
 	@Override
 	public String toString() {

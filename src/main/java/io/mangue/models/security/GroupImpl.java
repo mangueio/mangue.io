@@ -5,37 +5,42 @@
 
 package io.mangue.models.security;
 
-import io.mangue.models.AbstractModel;
-import org.springframework.data.annotation.Transient;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.Group;
 import java.util.Enumeration;
 import java.util.Vector;
 
 @Document
-public class GroupImpl extends AbstractModel implements Group {
+public class GroupImpl implements Group, Serializable {
     private Vector<Principal> groupMembers = new Vector(50, 100);
 
-    @Transient
-    private String group;
+    @Id
+    private String id;
 
-    public GroupImpl(String var1) {
-        this.group = var1;
-        this.setAcl(null);
-        this.setPrincipal(null);
+    public GroupImpl() {
+        this.id = new ObjectId().toHexString();
     }
 
+//    public GroupImpl(String id) {
+//        this.id = id;
+//    }
+
     public boolean addMember(Principal var1) {
-        if(this.groupMembers.contains(var1)) {
-            return false;
-        } else if(this.group.equals(var1.toString())) {
-            throw new IllegalArgumentException();
-        } else {
-            this.groupMembers.addElement(var1);
-            return true;
-        }
+        if(var1 != null)
+            if(this.groupMembers.contains(var1)) {
+                return false;
+            } else if(this.id.equals(var1.toString())) {
+                throw new IllegalArgumentException();
+            } else {
+                this.groupMembers.addElement(var1);
+                return true;
+            }
+        return false;
     }
 
     public boolean removeMember(Principal var1) {
@@ -46,14 +51,14 @@ public class GroupImpl extends AbstractModel implements Group {
         return this.groupMembers.elements();
     }
 
-    public boolean equals(Object var1) {
-        if(this == var1) {
+    public boolean equals(Object object) {
+        if(this == object) {
             return true;
-        } else if(!(var1 instanceof Group)) {
+        } else if(!(object instanceof Group)) {
             return false;
         } else {
-            Group var2 = (Group)var1;
-            return this.group.equals(var2.toString());
+            Group g = (Group) object;
+            return this.id.equals(g.toString());
         }
     }
 
@@ -62,11 +67,11 @@ public class GroupImpl extends AbstractModel implements Group {
     }
 
     public String toString() {
-        return this.group;
+        return this.id;
     }
 
     public int hashCode() {
-        return this.group.hashCode();
+        return this.id.hashCode();
     }
 
     public boolean isMember(Principal var1) {
@@ -79,7 +84,7 @@ public class GroupImpl extends AbstractModel implements Group {
     }
 
     public String getName() {
-        return this.group;
+        return this.id;
     }
 
     boolean isMemberRecurse(Principal var1, Vector<Group> var2) {

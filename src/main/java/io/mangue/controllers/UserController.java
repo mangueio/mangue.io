@@ -18,6 +18,7 @@ public class UserController {
 
     @RequestMapping("/current")
     public User currentUser(){
-       return utilService.getUser();
+        User user = utilService.getUser();
+       return user;
     }
 }

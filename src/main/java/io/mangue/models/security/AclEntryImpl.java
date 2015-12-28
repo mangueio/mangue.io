@@ -1,5 +1,6 @@
 package io.mangue.models.security;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.AclEntry;
 import java.security.acl.Group;
@@ -7,7 +8,7 @@ import java.security.acl.Permission;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class AclEntryImpl implements AclEntry {
+public class AclEntryImpl implements AclEntry, Serializable {
     public Principal user = null;
     public Vector<Permission> permissionSet = new Vector<>(10, 10);
     private boolean negative = false;

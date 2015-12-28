@@ -3,10 +3,10 @@ package io.mangue.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.mangue.models.security.AclImpl;
+import io.mangue.models.security.PrincipalImpl;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import sun.security.acl.PrincipalImpl;
 
 import java.security.acl.Acl;
 
@@ -15,20 +15,22 @@ import java.security.acl.Acl;
  */
 @Document
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AbstractModel {
+public abstract class AbstractModel {
     @Id
     public String id;
 
-    @JsonIgnore
-    private PrincipalImpl principal;
-
-    private Acl acl;
-
-    public AbstractModel(){
-        this.id = new ObjectId().toHexString();
-        principal = new PrincipalImpl(this.id);
-        acl = new AclImpl(principal, this.id);
+    public String getId() {
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @JsonIgnore
+    public PrincipalImpl principal;
+
+    public Acl acl;
 
     public PrincipalImpl getPrincipal() {
         return principal;

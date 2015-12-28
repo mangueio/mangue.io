@@ -2,14 +2,14 @@ package io.mangue.models.security;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.AclEntry;
 
 /**
  * Created by misael on 12/25/2015.
  */
-@Document
-public class PrincipalEntryPair {
+public class PrincipalEntryPair implements Serializable {
     public Principal principal;
     public AclEntry entry;
 

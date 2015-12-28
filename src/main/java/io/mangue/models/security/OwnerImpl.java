@@ -5,6 +5,7 @@
 
 package io.mangue.models.security;
 
+import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.Group;
 import java.security.acl.LastOwnerException;
@@ -12,9 +13,10 @@ import java.security.acl.NotOwnerException;
 import java.security.acl.Owner;
 import java.util.Enumeration;
 
-public class OwnerImpl implements Owner {
-    public Group ownerGroup = new GroupImpl("AclOwners");
+public class OwnerImpl implements Owner, Serializable {
+    public Group ownerGroup = new GroupImpl();
 
+    public OwnerImpl(){}
     public OwnerImpl(Principal var1) {
         this.ownerGroup.addMember(var1);
     }

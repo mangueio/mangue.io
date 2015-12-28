@@ -29,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.*;
 import java.security.Principal;
 import java.security.acl.*;
@@ -38,8 +39,7 @@ import java.util.stream.Collectors;
  * An Access Control List (ACL) is encapsulated by this class.
  * @author      Satish Dharmaraj
  */
-@Document
-public class AclImpl extends OwnerImpl implements Acl {
+public class AclImpl extends OwnerImpl implements Acl, Serializable {
     //
     // Maintain four tables. one each for positive and negative
     // ACLs. One each depending on whether the entity is a group
@@ -70,6 +70,10 @@ public class AclImpl extends OwnerImpl implements Acl {
 
     public HashSet<PrincipalEntryPair> getDeniedGroups() {
         return deniedGroups;
+    }
+
+    public AclImpl(){
+        super(null);
     }
 
     /**
@@ -424,57 +428,59 @@ public class AclImpl extends OwnerImpl implements Acl {
             individualNegative = ae.permissions();
         return individualNegative;
     }
-}
 
-final class AclEnumerator implements Enumeration<AclEntry> {
-    Acl acl;
-    Enumeration<AclEntry> u1, u2, g1, g2;
 
-    AclEnumerator(Acl acl, HashSet<PrincipalEntryPair> u1, HashSet<PrincipalEntryPair> g1,
-                  HashSet<PrincipalEntryPair> u2, HashSet<PrincipalEntryPair> g2) {
-        this.acl = acl;
+    public final class AclEnumerator implements Enumeration<AclEntry> {
+        Acl acl;
+        Enumeration<AclEntry> u1, u2, g1, g2;
+
+        AclEnumerator(Acl acl, HashSet<PrincipalEntryPair> u1, HashSet<PrincipalEntryPair> g1,
+                      HashSet<PrincipalEntryPair> u2, HashSet<PrincipalEntryPair> g2) {
+            this.acl = acl;
 //        this.u1 = u1.elements();
 //        this.u2 = u2.elements();
 //        this.g1 = g1.elements();
 //        this.g2 = g2.elements();
-        this.u1 = Collections.enumeration(
-                u1.stream().map(pair -> {
-                    return pair.entry; }).collect(Collectors.toSet())
-        );
-        this.u1 = Collections.enumeration(
-                u2.stream().map(pair -> {
-                    return pair.entry;}).collect(Collectors.toSet())
-        );
-        this.u1 = Collections.enumeration(
-                g1.stream().map(pair -> {
-                    return pair.entry;}).collect(Collectors.toSet())
-        );
-        this.u1 = Collections.enumeration(
-                g2.stream().map(pair -> {
-                    return pair.entry;}).collect(Collectors.toSet())
-        );
-    }
-
-    public boolean hasMoreElements() {
-        return (u1.hasMoreElements() ||
-                u2.hasMoreElements() ||
-                g1.hasMoreElements() ||
-                g2.hasMoreElements());
-    }
-
-    public AclEntry nextElement()
-    {
-        AclEntry o;
-        synchronized (acl) {
-            if (u1.hasMoreElements())
-                return u1.nextElement();
-            if (u2.hasMoreElements())
-                return u2.nextElement();
-            if (g1.hasMoreElements())
-                return g1.nextElement();
-            if (g2.hasMoreElements())
-                return g2.nextElement();
+            this.u1 = Collections.enumeration(
+                    u1.stream().map(pair -> {
+                        return pair.entry; }).collect(Collectors.toSet())
+            );
+            this.u1 = Collections.enumeration(
+                    u2.stream().map(pair -> {
+                        return pair.entry;}).collect(Collectors.toSet())
+            );
+            this.u1 = Collections.enumeration(
+                    g1.stream().map(pair -> {
+                        return pair.entry;}).collect(Collectors.toSet())
+            );
+            this.u1 = Collections.enumeration(
+                    g2.stream().map(pair -> {
+                        return pair.entry;}).collect(Collectors.toSet())
+            );
         }
-        throw new NoSuchElementException("Acl Enumerator");
+
+        public boolean hasMoreElements() {
+            return (u1.hasMoreElements() ||
+                    u2.hasMoreElements() ||
+                    g1.hasMoreElements() ||
+                    g2.hasMoreElements());
+        }
+
+        public AclEntry nextElement()
+        {
+            AclEntry o;
+            synchronized (acl) {
+                if (u1.hasMoreElements())
+                    return u1.nextElement();
+                if (u2.hasMoreElements())
+                    return u2.nextElement();
+                if (g1.hasMoreElements())
+                    return g1.nextElement();
+                if (g2.hasMoreElements())
+                    return g2.nextElement();
+            }
+            throw new NoSuchElementException("Acl Enumerator");
+        }
     }
 }
+

@@ -2,7 +2,9 @@ package io.mangue;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mangue.models.AppUser;
+import io.mangue.models.UserGrantedAuthority;
 import io.mangue.models.security.GroupImpl;
+import io.mangue.models.security.PermissionImpl;
 import io.mangue.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,16 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import sun.security.acl.AclEntryImpl;
-import sun.security.acl.PermissionImpl;
 
 import java.security.acl.Acl;
 import java.security.acl.AclEntry;
 import java.security.acl.Group;
 import java.security.acl.Permission;
 import java.util.Enumeration;
+import java.util.HashSet;
 
-//import io.mangue.models.security.AclEntryImpl;
+import io.mangue.models.security.AclEntryImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -35,17 +36,26 @@ public class AclTest {
     @Test
     public void test() throws Exception {
         AppUser p1 = new AppUser();
-        p1.name = "p1";
+        p1.name = "User 3";
+        p1.username = "user3";
+        p1.password = "pass3";
+
         AppUser p2 = new AppUser();
         p2.name = "p2";
+
+
         AppUser owner = new AppUser();
         owner.name = "owner";
+        owner.authorities = new HashSet<UserGrantedAuthority>();
+        UserGrantedAuthority uga = new UserGrantedAuthority();
+        uga.authority = UserGrantedAuthority.SUPERUSER_AUTHORITY;
+        owner.authorities.add(uga);
 
         Permission read = new PermissionImpl("READ");
         Permission write = new PermissionImpl("WRITE");
 
         System.out.println("Creating a new group with two members: user1 and user2");
-        Group g = new GroupImpl("group1");
+        Group g = new GroupImpl();
         g.addMember(p1.getPrincipal());
         g.addMember(p2.getPrincipal());
 
