@@ -357,22 +357,6 @@
         </repository>
     </repositories>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-            </plugin>
-            <!--END OF GIT COMMIT ID PLUGIN CONFIGURATION-->
-
-        </plugins>
-    </build>
-
     <!--<dependencyManagement>
         <dependencies>
             <dependency>

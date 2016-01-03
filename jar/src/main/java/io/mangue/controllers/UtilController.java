@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -113,10 +112,10 @@ public class UtilController {
         return "ok";
     }
 
-    @RequestMapping(value = "/getGit", method = RequestMethod.GET)
-    public Map<String, Object> getGit(){
-        return infoEndpoint.invoke();
-    }
+//    @RequestMapping(value = "/getGit", method = RequestMethod.GET)
+//    public Map<String, Object> getGit(){
+//        return infoEndpoint.invoke();
+//    }
 
     @RequestMapping(value = "/getApps", method = RequestMethod.GET)
     public List<App> getUserApp(){

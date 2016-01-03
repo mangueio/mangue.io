@@ -22,4 +22,14 @@
         <module>jar</module>
     </modules>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+            <!--END OF GIT COMMIT ID PLUGIN CONFIGURATION-->
+        </plugins>
+    </build>
+
 </project>
