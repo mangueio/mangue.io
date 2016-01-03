@@ -1,6 +1,4 @@
 package io.mangue.interceptors;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import io.mangue.config.multitenance.TenantContextHolder;
 import io.mangue.repositories.UserRepository;
@@ -8,6 +6,10 @@ import io.mangue.services.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 public class DomainInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired

@@ -15,25 +15,20 @@
  */
 package io.mangue.util;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
+import org.springframework.session.Session;
+import org.springframework.session.web.http.HttpSessionManager;
+import org.springframework.session.web.http.MultiHttpSessionStrategy;
+import org.springframework.util.Assert;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
-
-import org.springframework.session.Session;
-import org.springframework.session.web.http.HttpSessionManager;
-import org.springframework.session.web.http.MultiHttpSessionStrategy;
-import org.springframework.util.Assert;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * A {@link org.springframework.session.web.http.HttpSessionStrategy} that uses a cookie to obtain the session from.

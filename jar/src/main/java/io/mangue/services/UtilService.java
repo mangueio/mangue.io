@@ -17,7 +17,6 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
-import java.util.List;
 
 /**
  * Created by misael on 19/10/2015.

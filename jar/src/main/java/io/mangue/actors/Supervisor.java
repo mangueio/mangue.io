@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * A sample supervisor which should handle exceptions and general feedback
- * for the actual {@link io.mangue.actors.TaskActor}
+ * for the actual {@link TaskActor}
  * <p/>
  * A router is configured at startup time, managing a pool of task actors.
  */

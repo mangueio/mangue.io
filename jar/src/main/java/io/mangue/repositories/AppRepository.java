@@ -1,7 +1,6 @@
 package io.mangue.repositories;
 
 import io.mangue.models.App;
-import io.mangue.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 

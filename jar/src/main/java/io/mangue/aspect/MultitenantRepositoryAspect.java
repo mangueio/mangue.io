@@ -1,4 +1,4 @@
-//package io.mangue.aspect;
+package io.mangue.aspect;//package io.mangue.aspect;
 //
 //import org.aspectj.lang.annotation.Aspect;
 //import org.aspectj.lang.annotation.Before;

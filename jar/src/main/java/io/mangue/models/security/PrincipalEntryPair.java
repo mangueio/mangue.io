@@ -1,7 +1,5 @@
 package io.mangue.models.security;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 import java.security.Principal;
 import java.security.acl.AclEntry;

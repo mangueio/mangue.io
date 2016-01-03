@@ -27,12 +27,11 @@ package io.mangue.models.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-import java.util.*;
 import java.security.Principal;
 import java.security.acl.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**

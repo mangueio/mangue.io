@@ -8,7 +8,6 @@ import io.mangue.models.User;
 import io.mangue.repositories.AppRepository;
 import io.mangue.services.AsyncService;
 import io.mangue.services.UtilService;
-import io.mangue.util.ContentResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.actuate.endpoint.InfoEndpoint;
