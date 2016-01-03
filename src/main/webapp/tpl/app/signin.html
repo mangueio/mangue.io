@@ -1,0 +1,46 @@
+  <div class="bg-dark lt pos-abt w-full top-0">
+    <div class="wrapper-xl">
+      <div class="wrapper-xl">
+        <div class="wrapper"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-block w-xxl w-auto-xs p-v-md pos-rlt">
+
+    <div class="p-md panel md-whiteframe-z2 text-color m r-2x">
+      <div class="m-b-md text-sm">
+        <div class="img-full text-center p-l-lg p-r-lg">
+          <img src="/img/mangue2.png">
+        </div>
+      </div>
+      <form name="form" ng-submit="login()">
+        <!-- <div class="md-form-group float-label">
+          <input type="text" class="md-input" ng-model="user.username" required>
+          <label>Username</label>
+        </div> -->
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="user.username" required>
+        </md-input-container>
+        <md-input-container>
+          <label>Password</label>
+          <input type="password" ng-model="user.password" required>
+        </md-input-container>
+        <div class="m-b-md">        
+          <!-- <label class="md-check">
+            <input type="checkbox"><i class="md-accent"></i> Keep me signed in
+          </label> -->
+          <md-checkbox ng-model="keepMeLoggedIn" aria-label="Keep me signed in">
+            Keep me signed in
+          </md-checkbox>
+        </div>
+        <md-button md-ink-ripple type="submit" class="md-raised m-none md-accent btn-block p-h-md">Sign in</md-button>
+      </form>
+    </div>
+
+    <div class="p-v-lg text-center">
+      <div><button ui-sref="access.forgot-password" class="md-btn">Forgot password?</button></div>
+      <div>Do not have an account? <button ui-sref="access.signup" class="md-btn">Create an account</button></div>
+    </div>
+  </div>

@@ -1,0 +1,45 @@
+<div class="hbox bg-white">
+  <div class="wrapper-sm">
+    <!-- <h1 class="m-n font-thin h3">uiGrid</h1> -->
+    <div>
+     <md-button class="md-fab md-raised md-mini" aria-label="Mini FAB"><i class="i-24 mdi mdi-account-plus"></i></md-button>
+     <md-button class="md-fab md-raised md-mini" aria-label="Mini FAB"><i class="i-24 mdi mdi-account-minus"></i></md-button>
+     <md-button class="text-u-c md-raised text-black p-r"><i class="i-20 mdi2-content-add p-r-xs p-l-xs"></i>Column</md-button>
+
+     <md-menu>
+       <md-button aria-label="Open phone interactions menu" class="text-u-c md-raised text-black p-l" ng-click="openMenu($mdOpenMenu, $event)">
+          more options 
+         <i class="i-24 mdi2-navigation-arrow-drop-down"></i>
+       </md-button>
+        <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="ctrl.redial($event)">
+          Redial
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="ctrl.checkVoicemail()">
+            Check voicemail
+          </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="ctrl.toggleNotifications()">
+              {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
+
+  <div class="bg-white pos-abt" style="height: auto;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;">
+    <!-- <div class="table-responsive m-b-lg"> -->
+      <div ui-grid="gridOptions" external-scopes="externalFuncions" ui-grid-paging ui-grid-cellNav ui-grid-edit ui-grid-row-edit ui-grid-auto-resize ui-grid-resize-columns ui-grid-selection class="table-wrapper"></div>
+    <!-- </div> -->
+  </div>
+</div>
